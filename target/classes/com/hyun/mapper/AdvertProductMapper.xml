@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+  <mapper namespace="com.hyun.mapper.AdvertProductMapper">
+  
+      <insert id="prod_insert" parameterType="com.hyun.domain.ProductVO">
+   		INSERT INTO 
+   			PRODUCT_TBL(PROD_NUM, CGT_CODE, PROD_NAME, PROD_PRICE, PROD_DISCOUNT, PROD_PUBLISHER, PROD_CONTENT, PROD_UP_FOLDER, PROD_IMG, PROD_AMOUNT, PROD_BUY)
+   		VALUES
+   			(SEQ_PRODUCT_TBL.nextval,#{cgt_code},#{prod_name},#{prod_price},#{prod_discount},#{prod_publisher},#{prod_content},#{prod_up_folder},#{prod_img},#{prod_amount},#{prod_buy})
+   </insert>
+   
+<sql id="criteria">
+	<trim prefix="(" suffix=") AND" prefixOverrides="OR">
+		<foreach collection="typeArr" item="type">
+			<trim prefix="OR">
+				<choose>
+					<when test="type == 'N'.toString()">
+						PROD_NAME like '%' || #{keyword} || '%'
+					</when>
+									
+					<when test="type == 'C'.toString()">
+						PROD_NUM like '%' || #{keyword} || '%'
+					</when>
+					
+					<when test="type == 'P'.toString()">
+						PROD_PUBLISHER like '%' || #{keyword} || '%'
+					</when>
+				</choose>
+			</trim>
+		</foreach>
+	</trim>
+	</sql>
+	
+	
+	<select id="prod_list" resultType="com.hyun.domain.ProductVO" parameterType="com.hyun.dto.Criteria">
+	<![CDATA[ 
+	select 
+		prod_num, cgt_code, prod_name, prod_price, prod_discount, prod_publisher, prod_content, prod_up_folder, prod_img, prod_amount, prod_buy, prod_date, prod_updatedate
+	from 
+	(
+		select /*+INDEX_DESC(PRODUCT_TBL pk_prod_num) */
+			rownum rn, prod_num, cgt_code, prod_name, prod_price, prod_discount, prod_publisher, prod_content, prod_up_folder, prod_img, prod_amount, prod_buy, prod_date, prod_updatedate
+		from 
+			PRODUCT_TBL 
+		where 
+		]]>
+		
+		<include refid="criteria"></include>
+		<![CDATA[ 
+		rownum <= #{pageNum} * #{amount}
+	)
+	where rn > (#{pageNum} -1) * #{amount} 
+	]]>
+	</select>
+	
+	<select id="getTotalCount" resultType ="int">
+		SELECT COUNT(*) FROM PRODUCT_TBL WHERE
+		
+		<include refid="criteria"></include>
+		PROD_NUM > 0
+	</select>
+
+
+  </mapper>

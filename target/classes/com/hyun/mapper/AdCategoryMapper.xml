@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+  <mapper namespace="com.hyun.mapper.AdCategoryMapper">
+   
+   <select id="getOneCategoryList" resultType="com.hyun.domain.CategoryVO">
+   		SELECT
+   		 	CGT_CODE,
+   		 	CGT_PARENT_CODE,
+   		 	CGT_NAME 
+   		FROM
+   		 	CATEGORY_TBL 
+   		WHERE 
+   		 	CGT_PARENT_CODE IS NULL
+   
+   </select>
+   
+	<select id="getTwoCategoryList" parameterType="Integer" resultType="com.hyun.domain.CategoryVO">
+	   	SELECT
+   		 	CGT_CODE,
+   		 	CGT_PARENT_CODE,
+   		 	CGT_NAME 
+   		FROM
+   		 	CATEGORY_TBL 
+   		WHERE 
+   		 	CGT_PARENT_CODE = #{cgt_parent_code}
+	</select>
+
+  </mapper>
