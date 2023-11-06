@@ -10,11 +10,13 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -66,7 +68,7 @@ public class AdvertProductController {
 		
 		advertProductService.prod_insert(vo);
 		
-		return "redirect:/리스트";
+		return "redirect:/admin/product/prod_list";
 	}
 	
 	   @PostMapping("/imageUpload")
@@ -125,6 +127,9 @@ public class AdvertProductController {
 	   @GetMapping("/prod_list")
 	   public void prod_list(Criteria cri, Model model) throws Exception {
 		   
+		   //10 ->2
+		    cri.setAmount(2);
+		   
 			List<ProductVO> prod_list = advertProductService.prod_list(cri);
 			
 			//날짜폴더의 역슬래시를 슬래시로 바꾸는 작업, 역슬래시로 되어있는 정보가 스프링으로 보내는 요청데이터에 사용되면 에러발생.
@@ -136,5 +141,12 @@ public class AdvertProductController {
 			
 			int totalcount = advertProductService.getTotalCount(cri);
 			model.addAttribute("pageMaker", new PageDTO(cri, totalcount));
+	   }
+	   
+	   @ResponseBody
+	   @GetMapping("/imageDisplay")
+	   public ResponseEntity<byte[]> imageDisplay(String dateFolderName, String fileName)throws Exception {
+		   
+		   return FileUtils.getFile(uploadPath + dateFolderName, fileName);
 	   }
 }

@@ -135,8 +135,8 @@ desired effect
                         <label for="title" class="col-sm-1 col-form-label ">판매여부</label>
                         <div class="col-sm-6">
                           <select class="form-control" id="prod_buy" name="prod_buy">
-                            <option>판매가능</option>
-                            <option>판매불가능</option>
+                            <option value="Y">판매가능</option>
+                            <option value="N">판매불가능</option>
                           </select>
                         </div>
                         </div>
