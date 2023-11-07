@@ -10,12 +10,15 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -149,4 +152,56 @@ public class AdvertProductController {
 		   
 		   return FileUtils.getFile(uploadPath + dateFolderName, fileName);
 	   }
+	   @ResponseBody
+	   @PostMapping("/prod_checked_modify1")
+	   public ResponseEntity<String> prod_checked_modify1(
+			   @RequestParam("prod_num_arr[]") List<Integer> prod_num_arr,
+			   @RequestParam("prod_price_arr[]") List<Integer> prod_price_arr,
+			   @RequestParam("prod_buy_arr[]") List<String> prod_buy_arr
+			   ) throws Exception{
+		   
+		   log.info("상품코드: " + prod_num_arr);
+		   log.info("가격: " + prod_price_arr);
+		   log.info("판매여부: " + prod_buy_arr);
+		   
+		   ResponseEntity<String> entity = null;
+		   
+		   advertProductService.prod_checked_modify1(prod_num_arr, prod_price_arr, prod_buy_arr);
+		   
+		   entity = new ResponseEntity<String>("success", HttpStatus.OK);
+		   
+		   return entity;
+		   
+	   }
+	   @ResponseBody
+	   @PostMapping("/prod_checked_modify2")
+	   public ResponseEntity<String> prod_checked_modify2(
+			   @RequestParam("prod_num_arr[]") List<Integer> prod_num_arr,
+			   @RequestParam("prod_price_arr[]") List<Integer> prod_price_arr,
+			   @RequestParam("prod_buy_arr[]") List<String> prod_buy_arr
+			   ) throws Exception{
+		   
+		   log.info("상품코드: " + prod_num_arr);
+		   log.info("가격: " + prod_price_arr);
+		   log.info("판매여부: " + prod_buy_arr);
+		   
+		   ResponseEntity<String> entity = null;
+		   
+		   advertProductService.prod_checked_modify2(prod_num_arr, prod_price_arr, prod_buy_arr);
+		   
+		   entity = new ResponseEntity<String>("success", HttpStatus.OK);
+		   
+		   return entity;
+	   }
+	   
+	   @GetMapping("/prod_edit")
+	   public void prod_edit(@ModelAttribute("cri") Criteria cri, Integer prod_num, Model model)throws Exception{
+		   
+		   
+		   ProductVO productVO = advertProductService.prod_edit(prod_num);
+		   model.addAttribute("productVO", productVO);
+		   
+		   model.addAttribute("first_category", advertProductService.get(productVO.getCgt_code()));
+	   }
+	   
 }

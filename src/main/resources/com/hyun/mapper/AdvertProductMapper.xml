@@ -62,6 +62,48 @@
 		<include refid="criteria"></include>
 		PROD_NUM > 0
 	</select>
-
+	<update id="prod_checked_modify1" parameterType="Map">
+		UPDATE 
+        	PRODUCT_TBL 
+  		SET 
+        	PROD_PRICE = #{prod_price},
+        	PROD_BUY = #{prod_buy}
+    	WHERE 
+        	PROD_NUM = #{prod_num}
+	</update>
+			<update id="prod_checked_modify2">
+		<foreach collection="list" item="item" open="declare begin" separator=";" close="; end;">
+		UPDATE 
+        	PRODUCT_TBL 
+  		SET 
+        	PROD_PRICE = #{item.prod_price},
+        	PROD_BUY = #{item.prod_buy}
+    	WHERE 
+        	PROD_NUM = #{item.prod_num}
+		
+		</foreach>
+	</update>
+	
+		<select id="prod_edit" resultType="com.hyun.domain.ProductVO">
+	
+		SELECT 
+			prod_Num, cgt_Code, prod_Name, prod_Price, prod_Discount, prod_Publisher, prod_Content, prod_Up_Folder, prod_Img, prod_Amount, prod_Buy, prod_Date, prod_Updatedate
+		FROM 
+			PRODUCT_TBL 
+		WHERE 
+			PROD_NUM = #{prod_num}
+	
+	</select>
+	
+			<select id="get" parameterType="Integer" resultType="com.hyun.domain.CategoryVO">
+			
+		SELECT
+		 	cgt_code, cgt_parent_code, cgt_name 
+		FROM 
+			CATEGORY_TBL 
+		WHERE 
+			CGT_CODE = #{cgt_code}
+			
+		</select>
 
   </mapper>
