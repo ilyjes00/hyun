@@ -36,127 +36,139 @@ desired effect
 |---------------------------------------------------------|
 -->
 <body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
-
-  <!-- Main Header -->
-	<%@ include file="/WEB-INF/views/admin/include/header.jsp" %>
-  <!-- Left side column. contains the logo and sidebar -->
-    <%@ include file="/WEB-INF/views/admin/include/nav.jsp" %>
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Page Header
-        <small>Optional description</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-        <li class="active">Here</li>
-      </ol>
-    </section>
-
-    <!-- Main content -->
-    <section class="content container-fluid">
-
-      <div class="row">
-        <div class="col-md-12">
-           <div class="box box-primary">
-             <div class="box-header with-border">
-                <h3 class="box-title mt-5">Product edit</h3>
-             </div>
-             
-             <form role="form" method="post" action="/admin/product/prod_insert" enctype="multipart/form-data">
-                <div class="box-body">
-                <div class="form-group row">
-                <label for="title" class="col-sm-1 col-form-label ">카테고리</label>
-                <div class="col-sm-4">
-                  <select class="form-control" id="oneCategory">
-                    <option>1차 카테고리 선택</option>
-                    <c:forEach items="${oneCategoryList }" var="categoryVO">
-                    <option value="${categoryVO.cgt_code }" ${categoryVO.cgt_code == first_category.cgt_parent_code? 'selected':'' }>${categoryVO.cgt_name } </option>
-                    </c:forEach>
-                  </select>
-                </div>
-                <label for="title" class="col-sm-1 col-form-label"></label>
-                <div class="col-sm-6">
-                  <select class="form-control" id="twoCategory" name="cgt_code">
-                    <option>2차 카테고리 선택</option>
-                  </select>
-                </div>
-                </div>
-
+  <div class="wrapper">
+  
+    <!-- Main Header -->
+    <%@ include file="/WEB-INF/views/admin/include/header.jsp" %>
+    <!-- Left side column. contains the logo and sidebar -->
+      <%@ include file="/WEB-INF/views/admin/include/nav.jsp" %>
+  
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+          Page Header
+          <small>Optional description</small>
+        </h1>
+        <ol class="breadcrumb">
+          <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+          <li class="active">Here</li>
+        </ol>
+      </section>
+  
+      <!-- Main content -->
+      <section class="content container-fluid">
+  
+        <div class="row">
+          <div class="col-md-12">
+             <div class="box box-primary">
+               <div class="box-header with-border">
+                  <h3 class="box-title mt-5">Product edit</h3>
+                  <form id="actionForm" action="" method="get">
+                    <input type="hidden" name="pageNum" id="pageNum" value="${cri.pageNum }" />
+                    <input type="hidden" name="amount" id="amount" value="${cri.amount }" />
+                    <input type="hidden" name="type" id="type" value="${cri.type }" />
+                    <input type="hidden" name="keyword" id="keyword" value="${cri.keyword }" />
+                  </form>
+               </div>
+               
+               <form role="form" method="post" action="/admin/product/prod_edit" enctype="multipart/form-data">
+                  <div class="box-body">
                   <div class="form-group row">
-                  <label for="title" class="col-sm-1 col-form-label ">상품명</label>
+                  <label for="title" class="col-sm-1 col-form-label ">카테고리</label>
                   <div class="col-sm-4">
-                    <input type="text" class="form-control" name="prod_name" id="prod_name" value="${productVO.prod_name}">
+                    <select class="form-control" id="oneCategory">
+                      <option>1차 카테고리 선택</option>
+                      <c:forEach items="${oneCategoryList }" var="categoryVO">
+                        <option value="${categoryVO.cgt_code }" ${categoryVO.cgt_code == one_category.cgt_parent_code? 'selected':'' }>${categoryVO.cgt_name }</option>
+                      </c:forEach>
+                    </select>
                   </div>
-                  <label for="title" class="col-sm-1 col-form-label ">상품가격</label>
+                  <label for="title" class="col-sm-1 col-form-label"></label>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control" name="prod_price" id="prod_price" value="${productVO.prod_price}">
+                    <select class="form-control" id="secondCategory" name="cgt_code">
+                      <option>2차 카테고리 선택</option>
+                      <c:forEach items="${two_categoryList }" var="categoryVO">
+                        <option value="${categoryVO.cgt_code }" ${categoryVO.cgt_code == productVO.cgt_code? 'selected':'' }>${categoryVO.cgt_name }</option>
+                      </c:forEach>
+                    </select>
                   </div>
                   </div>
-
-                  <div class="form-group row">
-                    <label for="title" class="col-sm-1 col-form-label ">할인율</label>
-                    <div class="col-sm-4">
-                      <input type="text" class="form-control" name="prod_discount" id="prod_discount" value="${productVO.prod_discount}">
-                    </div>
-                    <label for="title" class="col-sm-1 col-form-label ">제조사</label>
-                    <div class="col-sm-6">
-                      <input type="text" class="form-control" name="prod_publisher" id="prod_publisher" value="${productVO.prod_publisher}">
-                    </div>
-                    </div>
-
-                  <div class="form-group row">
-                    <label for="title" class="col-sm-1 col-form-label ">상품이미지</label>
-                    <div class="col-sm-4">
-                      <input type="file" class="form-control" name="uploadFile" id="uploadFile" placeholder="작성자 입력...">
-                    </div>
-                    <label for="title" class="col-sm-1 col-form-label ">미리보기 이미지</label>
-                    <div class="col-sm-6">
-                      <img id="img_preview" style="width: 200px; height: 200px;">
-                    </div>
-                    </div>
-
+  
                     <div class="form-group row">
-                      <label for="title" class="col-sm-1 col-form-label ">상품설명</label>
-                      <div class="col-sm-11">
-                        <textarea class="form-control" rows="3" name="prod_content" id="prod_content">${productVO.prod_content}</textarea> 
+                    <label for="title" class="col-sm-1 col-form-label ">상품명</label>
+                    <div class="col-sm-4">
+                      <input type="hidden" name="prod_num" value="${productVO.prod_num }">
+                      <input type="text" class="form-control" name="prod_name" id="prod_name" value="${productVO.prod_name }">
+                    </div>
+                    <label for="title" class="col-sm-1 col-form-label ">상품가격</label>
+                    <div class="col-sm-6">
+                      <input type="text" class="form-control" name="prod_price" id="prod_price" value="${productVO.prod_price }">
+                    </div>
+                    </div>
+  
+                    <div class="form-group row">
+                      <label for="title" class="col-sm-1 col-form-label ">할인율</label>
+                      <div class="col-sm-4">
+                        <input type="text" class="form-control" name="prod_discount" id="prod_discount" value="${productVO.prod_discount }">
+                      </div>
+                      <label for="title" class="col-sm-1 col-form-label ">제조사</label>
+                      <div class="col-sm-6">
+                        <input type="text" class="form-control" name="prod_publisher" id="prod_publisher" value="${productVO.prod_publisher }">
                       </div>
                       </div>
-
+  
+                    <div class="form-group row">
+                      <label for="title" class="col-sm-1 col-form-label ">상품이미지</label>
+                      <div class="col-sm-4">
+                        <input type="file" class="form-control" name="uploadFile" id="uploadFile">
+                        <!--상품이미지 변경시 기존이미지 삭제를 위하여, 사용됨-->
+                        <input type="hidden" name="prod_img" value="${productVO.prod_img }">
+                      </div>
+                      <label for="title" class="col-sm-1 col-form-label ">미리보기 이미지</label>
+                      <div class="col-sm-6">
+                        <img id="img_preview" style="width:200px; height:200px;" src="/admin/product/imageDisplay?dateFolderName=${productVO.prod_up_folder }&fileName=${productVO.prod_img }">
+                      </div>
+                      </div>
+  
                       <div class="form-group row">
-                        <label for="title" class="col-sm-1 col-form-label ">수량</label>
-                        <div class="col-sm-4">
-                          <input type="text" class="form-control" name="prod_amount" id="prod_amount" value="${productVO.prod_amount}">
-                        </div>
-                        <label for="title" class="col-sm-1 col-form-label ">판매여부</label>
-                        <div class="col-sm-6">
-                          <select class="form-control" id="prod_buy" name="prod_buy">
-                            <option value="Y" ${productVO.prod_buy  == 'Y'? 'selected':'' }>판매가능</option>
-                            <option value="N" ${productVO.prod_buy  == 'N'? 'selected':'' }>판매불가능</option>
-                          </select>
+                        <label for="title" class="col-sm-1 col-form-label ">상품설명</label>
+                        <div class="col-sm-11">
+                          <textarea class="form-control" rows="3" name="prod_content" id="prod_content">${productVO.prod_content}</textarea> 
                         </div>
                         </div>
-                        </div>
-                      
-                
-                <div class="box-footer">
-                  <div class="text-center">
-                    <ul class="uploadedList"></ul>
-                <button type="submit" class="btn btn-primary">상품등록</button>
-                <button type="reset" class="btn btn-primary">취소</button>
-              </div>
+  
+                        <div class="form-group row">
+                          <label for="title" class="col-sm-1 col-form-label ">수량</label>
+                          <div class="col-sm-4">
+                            <input type="text" class="form-control" name="prod_amount" id="prod_amount" value="${productVO.prod_amount }">
+                          </div>
+                          <label for="title" class="col-sm-1 col-form-label ">판매여부</label>
+                          <div class="col-sm-6">
+                            <select class="form-control" id="prod_buy" name="prod_buy">
+                              <option value="Y" ${productVO.prod_buy  == 'Y'? 'selected':'' }>판매가능</option>
+                              <option value="N" ${productVO.prod_buy  == 'N'? 'selected':'' }>판매불가능</option>
+                            </select>
+                          </div>
+                          </div>
+                          </div>
+                        
+                  
+                  <div class="box-footer">
+                    <div class="text-center">
+                      <ul class="uploadedList"></ul>
+                  <button type="submit" class="btn btn-primary">상품수정</button>
+                  <button type="reset" class="btn btn-primary">취소</button>
                 </div>
-             </form>
+                  </div>
+               </form>
+            </div>
           </div>
-        </div>
-     </div>
-    </section>
-    <!-- /.content -->
-  </div>
+       </div>
+      </section>
+      <!-- /.content -->
+    </div>
   <!-- /.content-wrapper -->
 
   <!-- Main Footer -->

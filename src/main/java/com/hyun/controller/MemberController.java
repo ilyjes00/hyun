@@ -1,20 +1,25 @@
 package com.hyun.controller;
 
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.hyun.domain.MemberVO;
 import com.hyun.dto.LoginDTO;
+import com.hyun.dto.memberDTO;
 import com.hyun.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
@@ -250,4 +255,45 @@ public class MemberController {
 	}
 		return "redirect:" + url;
 	}
+	@RequestMapping(value = "/member/search_result_id")
+	public String search_result_id(HttpServletRequest request, Model model,
+	    @RequestParam(required = true, value = "mbsp_name") String mbsp_name, 
+	    @RequestParam(required = true, value = "mbsp_phone") String mbsp_phone,
+	    MemberVO searchVO) {
+	 
+	 
+	try {
+	    
+	    searchVO.setMbsp_name(mbsp_name);
+	    searchVO.setMbsp_phone(mbsp_phone);
+	    MemberVO memberSearch = memberService.memberIdSearch(searchVO);
+	    
+	    model.addAttribute("searchVO", memberSearch);
+	 
+	} catch (Exception e) {
+	    System.out.println(e.toString());
+	    model.addAttribute("msg", "오류가 발생되었습니다.");
+	}
+	 
+	return "/member/search_result_id";
+	}
+
+	 
+	@RequestMapping(value = "/member/search_id", method = RequestMethod.GET)
+	public String search_id(HttpServletRequest request, Model model,
+	        MemberVO searchVO) {
+	    
+	    
+	    return "/member/search_id";
+	} 
+	
+	@RequestMapping(value = "/member/search_pwd", method = RequestMethod.GET)
+	public String search_pwd(HttpServletRequest request, Model model,
+	        MemberVO searchVO) {
+	    
+	    
+	    return "/member/search_pwd";
+	}
+
+	
 }

@@ -14,4 +14,6 @@ public interface MemberService {
 	void loginTimeUpdate(String mbsp_id);
 	
 	void delete(String mbsp_id);
+	
+	MemberVO memberIdSearch(MemberVO searchVO);
 }

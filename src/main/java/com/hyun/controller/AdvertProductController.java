@@ -26,6 +26,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.hyun.util.FileUtils;
 import com.hyun.dto.Criteria;
 import com.hyun.dto.PageDTO;
+import com.hyun.service.AdCategoryService;
+import com.hyun.domain.CategoryVO;
 import com.hyun.domain.ProductVO;
 import com.hyun.service.AdvertProductService;
 
@@ -39,6 +41,7 @@ import lombok.extern.log4j.Log4j;
 public class AdvertProductController {
 	
 	private final AdvertProductService advertProductService;
+	private final AdCategoryService adCategoryService;
 	
 	@Resource(name = "uploadPath")
 	private String uploadPath;
@@ -198,10 +201,65 @@ public class AdvertProductController {
 	   public void prod_edit(@ModelAttribute("cri") Criteria cri, Integer prod_num, Model model)throws Exception{
 		   
 		   
-		   ProductVO productVO = advertProductService.prod_edit(prod_num);
-		   model.addAttribute("productVO", productVO);
 		   
-		   model.addAttribute("first_category", advertProductService.get(productVO.getCgt_code()));
+		   ProductVO productVO = advertProductService.prod_edit(prod_num);
+		   //역슬래시를 슬래시로 변환하는 작업 (\ -> /)
+		   //요청 타겟에서 유효하지 않은 문자가 발견되었습니다. 유효한 문자들은 RFC 7230과 RFC 3986에 정의되어 있습니다.
+		   productVO.setProd_up_folder(productVO.getProd_up_folder().replace("\\", "/"));
+		   
+		   model.addAttribute("productVO", productVO);
+		   // 1차 전체카테고리 GlobalControllerAdvice 클래스 Model 참조
+		   
+		   // 상품카테고리에서 2차카테고리를 이용한 1차카테고리 정보를 참조.
+		   // productVO.getCg_code() : 상품테이블에 있는 2차카테고리 코드
+		   CategoryVO oneCategory = adCategoryService.get(productVO.getCgt_code());
+		   model.addAttribute("one_category", adCategoryService.get(productVO.getCgt_code()));
+		   
+		   //1차카테고리 부모로 둔 2차카테고리 정보. EX> TOP(1) : 
+		   //현재 상품의 1차카테고리 코드 firstCategory.getCg_parent_code()
+		   model.addAttribute("two_categoryList", adCategoryService.getTwoCategoryList(oneCategory.getCgt_parent_code()));
+		  
+	   }
+	   
+	   //상품수정
+	   @PostMapping("/prod_edit")
+	   public String prod_edit(Criteria cri, ProductVO vo, MultipartFile uploadFile, RedirectAttributes rttr)throws Exception{
+		   
+		   //상품리스트에서 사용할 정보
+		   log.info("cri" + cri);
+		   //상품수정내용
+		   log.info("vo" + vo);
+		   
+		   //작업
+		   // 파일이 변경될 경우 해야할 작업  /  1)기존이미지파일 삭제  2)업로드작업
+		   // 참고> 클라이언트 파일명을 db에 저장하는 부분.. uploadFile.getSize() > 0
+		   if(!uploadFile.isEmpty()) {
+			   
+			   //1)기존이미지파일삭제작업
+			   FileUtils.deleteFile(uploadPath, vo.getProd_up_folder(), vo.getProd_img());
+			   //2)업로드작업
+			      String dateFolder = FileUtils.getDateFolder();
+			      String saveFileName = FileUtils.uploadFile(uploadPath, dateFolder, uploadFile);
+
+
+			   //3d에저장할 세로운 날짜폴더명및이미지명 변경작업.
+			      vo.setProd_img(saveFileName);
+			      vo.setProd_up_folder(dateFolder);
+			   
+		   }
+		   		//db연동작업
+		   		 advertProductService.prod_edit(vo);
+		   
+		   return "redirect:/admin/product/prod_list" + cri.getListLink();
+	   }
+	   
+	   @PostMapping("/prod_delete")
+	   public String prod_delete(Criteria cri, Integer prod_num)throws Exception{
+		   
+		   //db연동작업
+		   advertProductService.prod_delete(prod_num);
+		   
+		   return "redirect:/admin/product/prod_list" + cri.getListLink();
 	   }
 	   
 }

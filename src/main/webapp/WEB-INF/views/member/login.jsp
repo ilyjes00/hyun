@@ -86,6 +86,10 @@
   <div class="box-footer">
     <button type="submit" class="btn btn-primary" id="btnlogin">로그인</button>
     </div>
+    <hr>
+    <a href="/member/register" class="btn btn-google btn-user btn-block">회원가입</a> 
+	<a href="/member/search_id" class="btn btn-facebook btn-user btn-block">아이디  찾기</a>
+	<a href="/member/search_pwd" class="btn btn-warning btn-user btn-block">비밀번호찾기 찾기</a>
     <br>
     <a class="button button--social-login button--facebook" href="#"><i class="icon fa fa-facebook"></i>Login With Facebook</a>
     <a class="button button--social-login button--googleplus" href="#"><i class="icon fa fa-google-plus"></i>Login With Google +</a>

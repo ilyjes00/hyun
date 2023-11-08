@@ -10,4 +10,5 @@ public interface AdCategoryService {
 	
 	List<CategoryVO> getTwoCategoryList(Integer cgt_parent_code);
 	
+	CategoryVO get(Integer cgt_code);
 }

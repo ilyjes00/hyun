@@ -20,5 +20,7 @@ public interface AdvertProductService {
 
 	ProductVO prod_edit(Integer prod_num);
 	
-	CategoryVO get(Integer cgt_code);
+	void prod_edit(ProductVO vo);
+	
+	void prod_delete(Integer prod_num);
 }

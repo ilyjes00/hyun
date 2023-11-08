@@ -52,4 +52,10 @@ public class MemberServiceImpl implements MemberService {
 		memberMapper.delete(mbsp_id);
 		
 	}
+
+	@Override
+	public MemberVO memberIdSearch(MemberVO searchVO) {
+		// TODO Auto-generated method stub
+		return memberMapper.memberIdSearch(searchVO);
+	}
 }

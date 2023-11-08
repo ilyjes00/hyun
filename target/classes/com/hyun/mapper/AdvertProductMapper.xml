@@ -94,16 +94,24 @@
 			PROD_NUM = #{prod_num}
 	
 	</select>
-	
-			<select id="get" parameterType="Integer" resultType="com.hyun.domain.CategoryVO">
-			
-		SELECT
-		 	cgt_code, cgt_parent_code, cgt_name 
-		FROM 
-			CATEGORY_TBL 
+		<!-- 상품수정 -->
+	<update id="prod_edit_ok" parameterType="com.hyun.domain.ProductVO">
+		UPDATE 
+			PRODUCT_TBL
+		SET 
+			CGT_CODE = #{cgt_code}, PROD_NAME = #{prod_name}, PROD_PRICE = #{prod_price}, PROD_DISCOUNT = #{prod_discount}, PROD_PUBLISHER = #{prod_publisher}, PROD_CONTENT = #{prod_content},
+			PROD_UP_FOLDER = #{prod_up_folder}, PROD_IMG = #{prod_img}, PROD_AMOUNT = #{prod_amount}, PROD_BUY = #{prod_buy}, PROD_UPDATEDATE = SYSDATE
 		WHERE 
-			CGT_CODE = #{cgt_code}
-			
-		</select>
+			PROD_NUM = #{prod_num}
+	
+	</update>
+	<delete id="prod_delete" parameterType="Integer">
+		DELETE FROM
+			PRODUCT_TBL
+		WHERE
+			PROD_NUM= #{prod_num}
+	</delete>
+	
+
 
   </mapper>
