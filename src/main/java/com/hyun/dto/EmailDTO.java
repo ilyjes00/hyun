@@ -18,6 +18,7 @@ public class EmailDTO {
 	private String message;	//본문내용
 	
 	
+	
 	public EmailDTO() {
 		this.senderName = "hyun";
 		this.senderMail = "hyun";

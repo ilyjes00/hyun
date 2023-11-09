@@ -48,5 +48,6 @@ public class MemberVO {
 	private Date mbsp_datesub;
 	private Date mbsp_updatedate;
 
+	
 
 }

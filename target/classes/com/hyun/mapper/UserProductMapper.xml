@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+  <mapper namespace="com.hyun.mapper.UserProductMapper">
+	<select id="prod_list" resultType="com.hyun.domain.ProductVO" parameterType="com.hyun.dto.Criteria">
+	<![CDATA[ 
+	select 
+		prod_num, cgt_code, prod_name, prod_price, prod_discount, prod_publisher, prod_content, prod_up_folder, prod_img, prod_amount, prod_buy, prod_date, prod_updatedate
+	from 
+	(
+		select /*+INDEX_DESC(PRODUCT_TBL pk_prod_num) */
+			rownum rn, prod_num, cgt_code, prod_name, prod_price, prod_discount, prod_publisher, prod_content, prod_up_folder, prod_img, prod_amount, prod_buy, prod_date, prod_updatedate
+		from 
+			PRODUCT_TBL 
+		where 
+		
+				CGT_CODE = ${cgt_code}
+		and	
+		rownum <= #{cri.pageNum} * #{cri.amount}
+	)
+		where rn > (#{cri.pageNum} -1) * #{cri.amount} 
+	]]>
+	</select>
+	
+	<select id="getTotalCount" resultType ="int">
+		SELECT 
+			count(*)
+		FROM 
+		 	PRODUCT_TBL
+		WHERE
+			CGT_CODE = #{cgt_code} 
+	</select>
+
+  </mapper>

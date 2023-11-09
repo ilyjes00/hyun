@@ -16,4 +16,5 @@ public interface MemberService {
 	void delete(String mbsp_id);
 	
 	MemberVO memberIdSearch(MemberVO searchVO);
+	
 }
