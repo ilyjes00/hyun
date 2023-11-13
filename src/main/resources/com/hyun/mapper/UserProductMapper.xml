@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
   <mapper namespace="com.hyun.mapper.UserProductMapper">
-	<select id="prod_list" resultType="com.hyun.domain.ProductVO" parameterType="com.hyun.dto.Criteria">
+	<select id="prod_list" resultType="com.hyun.domain.ProductVO" parameterType="map">
 	<![CDATA[ 
 	select 
 		prod_num, cgt_code, prod_name, prod_price, prod_discount, prod_publisher, prod_content, prod_up_folder, prod_img, prod_amount, prod_buy, prod_date, prod_updatedate
@@ -16,11 +16,12 @@
 			PRODUCT_TBL 
 		where 
 		
-				CGT_CODE = ${cgt_code}
+		CGT_CODE = #{cgt_code}
 		and	
 		rownum <= #{cri.pageNum} * #{cri.amount}
 	)
-		where rn > (#{cri.pageNum} -1) * #{cri.amount} 
+	where
+		 rn > (#{cri.pageNum} -1) * #{cri.amount} 
 	]]>
 	</select>
 	

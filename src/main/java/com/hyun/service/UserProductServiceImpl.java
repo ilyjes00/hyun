@@ -19,6 +19,10 @@ public class UserProductServiceImpl implements UserProductService {
 	@Override
 	public List<ProductVO> prod_list(Integer cgt_code, Criteria cri) {
 		// TODO Auto-generated method stub
+		
+		System.out.println(cgt_code);
+		System.out.println(cri);
+		
 		return userProductMapper.prod_list(cgt_code, cri);
 	}
 

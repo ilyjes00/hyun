@@ -2,12 +2,18 @@ package com.hyun.controller;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.hyun.util.FileUtils;
 import com.hyun.domain.ProductVO;
 import com.hyun.dto.Criteria;
 import com.hyun.dto.PageDTO;
@@ -23,6 +29,10 @@ import lombok.extern.log4j.Log4j;
 public class UserProductController {
 	
 	private final UserProductService userProductService;
+	
+	// 메인및썸네일 이미지 업로드 폴더경로 주입작업
+	@Resource(name="uploadPath")	//servlet-context.xml의 bean이름 참조
+	private String uploadPath;
 
 	//매핑주소 1: /user/product/prod_list?cg_code=2차카테고리코드
 	//매핑주소 2: /user/product/prod_list/2차카테고리 코드 (REST API 개발형태)
@@ -32,12 +42,12 @@ public class UserProductController {
 		
 	}*/
 	
-	@GetMapping("/prod_list/{cg_code}")
-	public void prod_list(Criteria cri,@PathVariable("cgt_code") Integer cgt_code, Model model) throws Exception{
+	@GetMapping("/prod_list")
+	public String prod_list(Criteria cri,@ModelAttribute("cgt_code") Integer cgt_code, @ModelAttribute("cgt_name")String cgt_name, Model model) throws Exception{
 		
 		   
 		   //10 -> 2
-		    cri.setAmount(2);
+		    cri.setAmount(8);
 		   
 			List<ProductVO> prod_list = userProductService.prod_list(cgt_code, cri);
 			
@@ -50,6 +60,16 @@ public class UserProductController {
 			
 			int totalcount = userProductService.getTotalCount(cgt_code);
 			model.addAttribute("pageMaker", new PageDTO(cri, totalcount));
+			
+			return "/user/product/prod_list";
+	}
+			
+			   //상품리스트에서 보여줄이미지, <img src="매핑주소">
+			   @ResponseBody
+			   @GetMapping("/imageDisplay")	///user/product/imageDisplay?dateFolderName=값1&fileName=값2
+			   public ResponseEntity<byte[]> imageDisplay(String dateFolderName, String fileName)throws Exception {
+				   
+				   return FileUtils.getFile(uploadPath + dateFolderName, fileName);
 	   }
 	}
 

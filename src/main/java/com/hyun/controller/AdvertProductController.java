@@ -58,6 +58,8 @@ public class AdvertProductController {
 		
 		log.info("상품등록 폼");
 	}
+	
+	
 	//상품등록 저장
 	@PostMapping("/prod_insert")
 	public String prod_insert(ProductVO vo , MultipartFile uploadFile, RedirectAttributes rttr) {
