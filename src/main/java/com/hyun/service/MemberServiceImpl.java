@@ -58,4 +58,18 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return memberMapper.memberIdSearch(searchVO);
 	}
+
+	@Override
+	public MemberVO finduserpwd(String mbsp_id, String mbsp_email) {
+		// TODO Auto-generated method stub
+		return memberMapper.finduserpwd(mbsp_id, mbsp_email);
+	}
+
+	@Override
+	public void updatePwd(String mbsp_id, String mbsp_password) {
+		// TODO Auto-generated method stub
+		memberMapper.updatePwd(mbsp_id, mbsp_password);
+	}
+
+
 }

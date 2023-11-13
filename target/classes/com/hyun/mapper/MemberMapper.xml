@@ -73,4 +73,32 @@
         mbsp_phone = #{mbsp_phone}
 ]]>    
 </select>
+
+<select id="finduserpwd" parameterType="map" resultType="com.hyun.domain.MemberVO">
+
+		select
+			MBSP_DEADDR,
+			MBSP_ID,
+			MBSP_EMAIL,
+			MBSP_NAME,
+			MBSP_PASSWORD,
+			MBSP_PHONE,
+			MBSP_ADDR,
+			MBSP_ZIPCODE,
+			MBSP_LASTLOGIN,
+			MBSP_POINT,
+			MBSP_DATESUB,
+			MBSP_UPDATEDATE
+		from
+		  	MBSP_TBL
+		where 
+			MBSP_ID = #{mbsp_id} 
+		and 
+			MBSP_EMAIL = #{mbsp_email}
+	</select>
+   
+	<update id="updatePwd" parameterType="map">
+		update MBSP_TBL set MBSP_PASSWORD=#{mbsp_password} where MBSP_ID=#{mbsp_id}
+	</update>
+
   </mapper>

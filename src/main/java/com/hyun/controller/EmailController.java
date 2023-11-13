@@ -1,11 +1,20 @@
 package com.hyun.controller;
 
+import java.io.File;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hyun.dto.EmailDTO;
@@ -21,7 +30,8 @@ import lombok.extern.log4j.Log4j;
 public class EmailController {
 
 	private final EmailService emailService;
-	
+	private final JavaMailSender mailSender;
+	private String msgFlag;
 		//메일인증코드 요청주소
 	@GetMapping("/authcode")
 	public ResponseEntity<String> authSend(EmailDTO dto, HttpSession session){
