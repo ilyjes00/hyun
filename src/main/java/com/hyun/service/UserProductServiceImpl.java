@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class UserProductServiceImpl implements UserProductService {
 
-	private UserProductMapper userProductMapper;
+	private final UserProductMapper userProductMapper;
 	
 	@Override
 	public List<ProductVO> prod_list(Integer cgt_code, Criteria cri) {
