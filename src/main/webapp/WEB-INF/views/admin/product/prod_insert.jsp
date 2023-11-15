@@ -83,6 +83,16 @@ desired effect
                 <div class="col-sm-6">
                   <select class="form-control" id="twoCategory" name="cgt_code">
                     <option>2차 카테고리 선택</option>
+                    <c:forEach items="${twoCategoryList }" var="categoryVO">
+                      <option value="${categoryVO.cgt_code }">${categoryVO.cgt_name } </option>
+                      </c:forEach>
+                  </select>
+                </div>
+                <hr>
+                <label for="title" class="col-sm-1 col-form-label"></label>
+                <div class="col-sm-10">
+                  <select class="form-control" id="threeCategory" name="cgt_code">
+                    <option>3차 카테고리 선택</option>
                   </select>
                 </div>
                 </div>
@@ -298,9 +308,53 @@ desired effect
           //console.log(optionStr);
           twoCategory.append(optionStr);
         }
+      });
+  });
+
+  
+ //2차카테고리선택
+     //document.getElementById("oneCategory")와 같다
+     $("#twoCategory").change(function() {
+      //$(this) : option태그중 선택한 option태그를 가리킴.
+      let cgt_parent_code = $(this).val();
+
+      //console.log("1차 카테고리 코드", cgt_parent_code);
+
+      //1차 카테고리 선택에 의한 2차카테고리
+      let url = "/admin/category/threeCategory/" + cgt_parent_code + ".json";
+
+
+      //$.getJSON() : 스프링에 요청시 데이터를 json으로 받는 기능.
+      $.getJSON(url, function(threeCategoryList) {
+        //console.log("2차 카테고리 정보", threeCategoryList);
+
+        console.log("3차 카테고리 개수", threeCategoryList.length + 1);
+
+        //2차카테고리 select태그 참조
+        let threeCategory = ("#threeCategory")
+        for(let i = 0; i<threeCategoryList.length; i++) {
+          threeCategory = $("#threeCategory");
+          let optionStr =  "";
+
+          //<option value = '10' >바지</option>
+
+          // find("css선택자") : 태그명, id속성이름, class속성이름
+
+          threeCategory.find("option").remove(); //2차 카테고리의 option제거
+          threeCategory.append("<option value=''>3차 카테고리 선택</option>");
+
+          for(let i=0; i<threeCategoryList.length; i++) {
+            optionStr += "<option value ='" + threeCategoryList[i].cgt_code + "'>" +threeCategoryList[i].cgt_name + "</option>";
+
+          }
+          //console.log(optionStr);
+          threeCategory.append(optionStr);
+        }
 
         });
       });
+
+
 
               //파일첨부시 이미지 미리보기
         //파일첨부에따른 이벤트관련정보를 e라는 매개변수로 전달된다.

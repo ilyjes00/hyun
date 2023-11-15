@@ -4,6 +4,45 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
   <mapper namespace="com.hyun.mapper.CartMapper">
-   
+   <insert id="cart_add" parameterType="com.hyun.domain.CartVO">
+    MERGE INTO CART_TBL
+    USING DUAL
+    ON (MBSP_ID = #{mbsp_id} AND PROD_NUM = #{prod_num})
+    WHEN MATCHED THEN
+      UPDATE SET CART_AMOUNT = CART_AMOUNT + #{cart_amount}
+    WHEN NOT MATCHED THEN
+      INSERT (cart_code, prod_num, mbsp_id, cart_amount)
+      VALUES (seq_cart_code.nextval, #{prod_num}, #{mbsp_id}, #{cart_amount})
+   </insert>
+  
+  
+  <select id="cart_list" resultType="com.hyun.dto.CartDTOList">
+        SELECT
+          	C.PROD_NUM , C.CART_CODE, C.CART_AMOUNT, P.PROD_NAME, P.PROD_PRICE, P.PROD_IMG, P.PROD_DISCOUNT, P.PROD_UP_FOLDER 
+        FROM 
+        	 PRODUCT_TBL P INNER JOIN CART_TBL C 
+       	ON 
+       		P.PROD_NUM = C.PROD_NUM 
+        WHERE 
+        	C.MBSP_ID = #{mbsp_id}
+  
+  </select>
+  <update id="cart_amount_change" parameterType="map">
+  		UPDATE
+  			CART_TBL
+  		SET
+  			CART_AMOUNT = #{cart_amount}
+  		WHERE
+  			CART_CODE = #{cart_code}
+  </update>
+  
+  <delete id="cart_list_del" parameterType="Long">
+  	DELETE 
+  	FROM
+  		CART_TBL
+  	WHERE 
+  		CART_CODE = #{cart_code}
+  
+  </delete>
   
   </mapper>

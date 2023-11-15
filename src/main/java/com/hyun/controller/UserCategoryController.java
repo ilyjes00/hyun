@@ -41,5 +41,20 @@ public class UserCategoryController {
 		   
 		return entity;
 	   }
+	   @ResponseBody
+	   @GetMapping("/threeCategory/{cgt_parent_code}")
+	   public ResponseEntity<List<CategoryVO>> threeCategory(@PathVariable("cgt_parent_code") Integer cgt_parent_code) throws Exception {
+		   
+		   
+		   log.info("2차카테고리코드 : " + cgt_parent_code);
+		   
+		   ResponseEntity<List<CategoryVO>> entity = null;
+		   
+		   entity = new ResponseEntity<List<CategoryVO>> (userCategoryService.getTwoCategoryList(cgt_parent_code), HttpStatus.OK);
+		   
+		   //<List<CategoryVO> list = 
+		   
+		return entity;
+	   }
 	
 }

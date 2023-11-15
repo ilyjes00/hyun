@@ -30,11 +30,19 @@ public class AdCategoryServiceImpl implements AdCategoryService {
 		// TODO Auto-generated method stub
 		return adCategoryMapper.getTwoCategoryList(cgt_parent_code);
 	}
+	
+	@Override
+	public List<CategoryVO> getThreeCategoryList(Integer cgt_parent_code) {
+		// TODO Auto-generated method stub
+		return adCategoryMapper.getThreeCategoryList(cgt_parent_code);
+	}
 
 	@Override
 	public CategoryVO get(Integer cgt_code) {
 		// TODO Auto-generated method stub
 		return adCategoryMapper.get(cgt_code);
 	}
+
+
 
 }
