@@ -7,12 +7,25 @@
   <head>
     <!-- Bootstrap CSS 링크 추가 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/b-nav.css">
   </head>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a style="text-align: left;" class="navbar-brand" href="#">Never</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <div class="menu-wrap">
+          <input type="checkbox" class="toggler">
+          <div class="hamburger"><div></div></div>
+          <div class="menu">
+              <div>
+                  <div id="category_menu">
+                      <ul>
+                        <c:forEach items="${oneCategoryList }" var="category">
+                          <li><a href="#"data-cgt_code="${category.cgt_code }">${category.cgt_name }</a></li>
+                        </c:forEach>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </div>
+     
   <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
     <ul class="navbar-nav">
       <li class="nav-item active">
@@ -52,6 +65,6 @@
     <a class="p-2 text-white" href="/admin/intro">[ADMIN]</a>
         </c:if> 
 </nav>
-
+<script src="/js/category_menu.js"></script>
 </body>
 </html>

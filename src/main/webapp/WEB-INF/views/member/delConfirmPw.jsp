@@ -203,5 +203,6 @@
         });
       
     </script>
+    <script src="/js/category_menu.js"></script>
   </body>
 </html>

@@ -1,8 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto+Slab:400,700);
 body {
   text-align: center;
   padding: 24px 24px 96px;
-  font-family: 'Roboto Slab', serif;
 }
 
 h1, h2 {

@@ -68,7 +68,7 @@
       <input type="text" class="form-control" id="mbsp_id" name="mbsp_id" placeholder="Enter ID">
     </div>
     <div class="col-sm-2">
-    <button type="button" class="btn btn-outline-info" id="idcheck">중복확인</button>
+    <button type="button" class="btn btn-primary" id="idcheck">중복확인</button>
     </div>
   </div>
       <div class="form-group row">
@@ -95,7 +95,7 @@
       <input type="email" class="form-control" id="mbsp_email" name="mbsp_email" placeholder="Enter email">
     </div>
     <div class="col-sm-2">
-      <button type="button" class="btn btn-outline-info" id="mailAuth">메일인증</button>
+      <button type="button" class="btn btn-primary" id="mailAuth">메일인증</button>
     </div>
   </div>
   <div class="form-group row">
@@ -104,7 +104,7 @@
       <input type="text" class="form-control" id="authCode" name="authCode" placeholder="Enter ID">
     </div>
     <div class="col-sm-2">
-    <button type="button" class="btn btn-outline-info" id="btnConfirmAuth">인증확인</button>
+    <button type="button" class="btn btn-primary" id="btnConfirmAuth">인증확인</button>
     </div>
   </div>
     <div class="form-group row">
@@ -113,7 +113,7 @@
       <input type="text" class="form-control" id="sample2_postcode" name="mbsp_zipcode" placeholder="Enter zipcode">
     </div>
     <div class="col-sm-2">
-     <button type="button" onclick="sample2_execDaumPostcode()" class="btn btn-outline-info">우편변호찾기</button>
+     <button type="button" onclick="sample2_execDaumPostcode()" class="btn btn-primary">우편변호찾기</button>
      </div>
   </div>
     <div class="form-group row">
@@ -360,5 +360,6 @@
         });
       }); 
     </script>
+    <script src="/js/category_menu.js"></script>
   </body>
 </html>

@@ -49,7 +49,6 @@
 
 <%@include file="/WEB-INF/views/comm/header.jsp" %>
 
-<%@include file="/WEB-INF/views/comm/category_menu.jsp" %>
 
 <%@include file="/WEB-INF/views/comm/slider.jsp" %>
 

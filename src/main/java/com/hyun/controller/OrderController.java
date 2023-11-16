@@ -8,7 +8,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.hyun.domain.OrderDetailVO;
+import com.hyun.domain.OrderVO;
+import com.hyun.domain.PaymentVO;
+import com.hyun.kakaopay.ReadyResponse;
 import com.hyun.domain.MemberVO;
 import com.hyun.dto.CartDTOList;
 import com.hyun.service.CartService;
@@ -50,6 +55,31 @@ public class OrderController {
 		
 		model.addAttribute("order_info", order_info);
 		model.addAttribute("order_price", order_price);
+	}
+	
+	//카카오 결제 선택을 진행했을경우
+	@GetMapping(value = "/orderPay", produces = "application/json")
+	public @ResponseBody ReadyResponse payReady(OrderVO O_vo, OrderDetailVO od_vo , PaymentVO p_vo, int totalamount, HttpSession session) throws Exception{
+		
+		return null;
+	}
+	
+	
+	//결제 성공시 http://localhost:9090/user/order/orderApproval
+	@GetMapping("/orderApproval")
+	public void orderApproval() {
+		
+	}
+	
+	//결제취소시 http://localhost:9090/user/order/orderCancle
+	@GetMapping("/orderCancle")
+	public void orderCancle() {
+		
+	}
+	//결제 실패시 http://localhost:9090/user/order/orderFail
+	@GetMapping("/orderFail")
+	public void orderFail() {
+		
 	}
 	
 
