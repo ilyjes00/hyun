@@ -41,7 +41,7 @@ public class KakaoPayServiceImpl {
 	private HttpHeaders getHeaderInfo() {
 		HttpHeaders headers = new HttpHeaders();
 		//Admin키
-		headers.set("Authorization", "KakaoAK ${53118e479f6d3ac99035e20073dd88ee}"); //카카오톡 개발자 https://developers.kakao.com/console/app 홈페이지에서 자기개인작업으로 변경할것
+		headers.set("Authorization", "KakaoAK 53118e479f6d3ac99035e20073dd88ee"); //카카오톡 개발자 https://developers.kakao.com/console/app 홈페이지에서 자기개인작업으로 변경할것
 		headers.set("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 		
 		return headers;
@@ -66,6 +66,7 @@ public class KakaoPayServiceImpl {
 		parameters.add("quantity", String.valueOf(quantity));				//	상품 수량
 		parameters.add("total_amount", String.valueOf(totalAmount));			//	상품 총액
 		parameters.add("tax_free_amount", "0");		// 	상품 비과세 금액
+		
 		parameters.add("approval_url", "http://localhost:9090/user/order/orderApproval");			//	결제 성공 시 redirect url, 최대 255자
 		parameters.add("cancel_url", "http://localhost:9090/user/order/orderCancle");			//	결제 취소 시 redirect url, 최대 255자
 		parameters.add("fail_url", "http://localhost:9090/user/order/orderFail");				//	결제 실패 시 redirect url, 최대 255자
