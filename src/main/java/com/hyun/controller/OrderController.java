@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.hyun.domain.CartVO;
 import com.hyun.domain.MemberVO;
 import com.hyun.domain.OrderVO;
 import com.hyun.domain.PaymentVO;
@@ -63,6 +64,20 @@ public class OrderController {
 		
 		
 		
+	}
+	//상품상세에서 주문하기
+	@GetMapping("/order_ready")
+	public String order_ready(CartVO vo, HttpSession session) throws Exception{
+		
+		log.info("상세주문하기: " + vo);
+		
+		String mbsp_id = ((MemberVO) session.getAttribute("loginStatus")).getMbsp_id();
+		vo.setMbsp_id(mbsp_id);
+		
+		cartService.cart_add(vo);
+		
+		
+		return "redirect:/user/order/order_info";
 	}
 	
 	//카카오 결제 선택을 진행했을경우

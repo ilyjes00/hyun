@@ -33,5 +33,15 @@
 		WHERE
 			CGT_CODE = #{cgt_code} 
 	</select>
+	
+	   <select id="prod_detail" parameterType="Integer" resultType="com.hyun.domain.ProductVO">
+   select
+   		PROD_NUM, CGT_CODE, PROD_NAME, PROD_PRICE, PROD_DISCOUNT, PROD_PUBLISHER, PROD_CONTENT, PROD_UP_FOLDER, PROD_IMG, PROD_AMOUNT, PROD_BUY, PROD_DATE, PROD_UPDATEDATE
+   	from
+   		PRODUCT_TBL
+   	where
+   		PROD_NUM = #{prod_num}
+   
+   </select>
 
   </mapper>

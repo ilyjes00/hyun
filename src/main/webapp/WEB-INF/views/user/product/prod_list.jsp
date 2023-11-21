@@ -66,10 +66,10 @@
   <c:forEach items="#{prod_list }" var="productVO"> 
   <div class="col-md-3">
           <div class="card mb-4 shadow-sm">
-           <img src="/user/product/imageDisplay?dateFolderName=${productVO.prod_up_folder }&fileName=${productVO.prod_img }" width="100%" height="225">
+           <img class="btn_prod_img" data-prod_num="${productVO.prod_num }" style="cursor: pointer;" src="/user/product/imageDisplay?dateFolderName=${productVO.prod_up_folder }&fileName=${productVO.prod_img }" width="100%" height="225">
 
             <div class="card-body">
-              <p class="card-text">${productVO.prod_name }</p>
+              <p class="card-text btn_prod_img">${productVO.prod_name }</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <button type="button" name="btn_cart_add" data-prod_num="${productVO.prod_num }" class="btn btn-sm btn-outline-secondary">Cart</button>
@@ -154,7 +154,7 @@ $(document).ready(function (){
 
 //장바구니 추가
 $("button[name='btn_cart_add']").on("click", function() {
-	console.log($(this).data("prod_num"));
+	//console.log($(this).data("prod_num"));
 
 
 	$.ajax({
@@ -172,6 +172,22 @@ $("button[name='btn_cart_add']").on("click", function() {
     }
   });
 });
+$(".btn_prod_img").on("click" , function() {
+
+let actionForm = $("#actionForm");
+console.log("상품상세설명");
+
+actionForm.attr("action", "/user/product/prod_detail");
+
+let prod_num = $(this).data("prod_num");
+
+actionForm.find("input[name='prod_num']").remove();
+// <input type='hidden' name='prod_num' value='상품코드'>
+actionForm.append("<input type='hidden' name='prod_num' value='" + prod_num + "'>");
+actionForm.submit();
+
+});
+//ready event end
 </script>
 
   </body>

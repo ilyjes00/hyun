@@ -12,4 +12,6 @@ public interface UserProductMapper {
 	List<ProductVO> prod_list(@Param("cgt_code") Integer cgt_code, @Param("cri") Criteria cri);
 
 	int getTotalCount(Integer cgt_code);
+	
+	ProductVO prod_detail(Integer prod_num);
 }

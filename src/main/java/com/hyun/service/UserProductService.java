@@ -11,4 +11,6 @@ public interface UserProductService {
 	
 
 	int getTotalCount(Integer cgt_code);
+	
+	ProductVO prod_detail(Integer prod_num);
 }

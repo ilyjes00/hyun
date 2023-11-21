@@ -32,4 +32,10 @@ public class UserProductServiceImpl implements UserProductService {
 		return userProductMapper.getTotalCount(cgt_code);
 	}
 
+	@Override
+	public ProductVO prod_detail(Integer prod_num) {
+		// TODO Auto-generated method stub
+		return userProductMapper.prod_detail(prod_num);
+	}
+
 }
