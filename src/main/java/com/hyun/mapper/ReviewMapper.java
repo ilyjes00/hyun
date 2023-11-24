@@ -14,4 +14,6 @@ public interface ReviewMapper {
 	List<ReviewVO> list(@Param("prod_num")Integer prod_num, @Param("cri") Criteria cri); 	//criteria 에서 검색기능 사용안함. mapper에서만 param하고 서비스에서는 제거
 	
 	int listCount(Integer prod_num);
+	
+	void delete(Long rew_num);
 }

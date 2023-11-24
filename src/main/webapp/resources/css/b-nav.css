@@ -1,8 +1,8 @@
 
 :root{
-    --primary-color: rgba(20, 177, 177, 0.5);
-    --overlay-color: rgba(24,39,51,0.85);
-    --menu-speed: 0.75s;
+    --primary-color: white;
+    --overlay-color: white;
+    --menu-speed: 0s;
 }
 *{
     box-sizing: border-box;
@@ -119,7 +119,7 @@ body{
     position: relative;
     width: 100%;
     height: 2px;
-    background-color: #fff;
+    background-color: #000;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -157,6 +157,7 @@ body{
 /* Show menu */
 .menu-wrap .toggler:checked ~ .menu{
     visibility: visible;
+    opacity: 1;
 }
 .menu-wrap .toggler:checked ~ .menu > div{
     transform: scale(1);
@@ -172,7 +173,8 @@ body{
     left: 0;
     width: 100%;
     height: 80%;
-     visibility: hidden; 
+    visibility: hidden; 
+    opacity: 0;
     overflow: hidden;
     display: flex;
     align-items: center;

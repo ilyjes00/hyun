@@ -12,4 +12,6 @@ public interface ReviewService {
 	List<ReviewVO> list(Integer prod_num, Criteria cri);
 	
 	int listCount(Integer prod_num);
+	
+	void delete(Long rew_num);
 }

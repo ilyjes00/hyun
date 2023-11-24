@@ -17,7 +17,6 @@
             <div class="menu">
                 <div>
                     <div id="category_menu">
-
   <div class=hide-at-start-wrapper>
     <nav class="bmenu panel animated">
       <a><span></span></a>

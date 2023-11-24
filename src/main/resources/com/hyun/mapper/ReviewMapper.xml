@@ -42,6 +42,12 @@
 		prod_num = #{prod_num}
 	
 	</select>
+	<delete id="delete" parameterType="Long">
+	DELETE FROM
+		REVIEW_TBL
+	WHERE
+		rew_num = #{rew_num}
+	</delete>
 
 
   </mapper>

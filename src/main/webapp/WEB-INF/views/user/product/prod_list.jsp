@@ -39,6 +39,35 @@
           font-size: 3.5rem;
         }
       }
+      .left-section {
+            width: 20%;
+            height: 200%;
+            float: left;
+            max-height: calc(100vh - 200px); /* footer의 높이가 200px로 가정 */
+            overflow-y: auto; /* 섹션의 높이를 벗어나는 경우 스크롤 생성 */
+        }
+        
+        .right-section {
+            width: 60%;
+            float: left;
+        }
+
+        .vertical-menu {
+          font-size: large;
+          font-weight: bold;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .vertical-menu a {
+        font-size: medium; 
+        font-weight: lighter;     
+        text-align: center;
+        text-decoration: none;
+        color: #333; /* 링크 색상 */
+        padding: 3px; /* 각 아이템 간 간격 */
+    }
     </style>
 
     
@@ -51,16 +80,27 @@
 <%@include file="/WEB-INF/views/comm/header.jsp" %>
 
 
-<%@include file="/WEB-INF/views/comm/slider.jsp" %>
-
-
-
+<section class="left-section">
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
 
   <h1 class="display-4"></h1>
   <p>2차 카테고리:${cgt_name }</p>
 </div>
-
+<div class="vertical-menu" id="categoryOne_menu">
+  <ul>
+  <li class="nav-item">
+    <a class="nav-link" name="apple" href="#" data-cgt_code="1">애플</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" name="samsung" href="#" data-cgt_code="2">삼성</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" name="google" href="#" data-cgt_code="3">구글</a>
+  </li>
+</ul>
+  </div>
+</section>
+<section class="right-section">
 <div class="container">
   <div class="card-deck mb-3 text-center row">
   <c:forEach items="#{prod_list }" var="productVO"> 
@@ -84,6 +124,8 @@
     </c:forEach>
     </div>
   </div>
+</section>
+
   
   <div class="container">
      <div class="row justify-content-end">
@@ -133,7 +175,6 @@
 </div>
 
 <%@include file="/WEB-INF/views/comm/plugin.jsp" %>
-<script src="/js/category_menu.js"></script>
 
 <script>
 $(document).ready(function (){
@@ -187,8 +228,41 @@ actionForm.append("<input type='hidden' name='prod_num' value='" + prod_num + "'
 actionForm.submit();
 
 });
+
+$(document).ready(function() {
+    let desiredCgtCode1 = [
+        "5", "6", "7", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19",
+        "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32",
+        "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45",
+        "46", "47", "48", 
+    ];
+
+    let desiredCgtCode2 = ["49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61","62","63","64","65","66","67"];
+
+    let desiredCgtCode3 = ["68", "69", "70", "71", "72", "73", "74", "75"];
+
+    let cgtCode = "${cgt_code}"; // JSP 변수에서 cgt_code 값을 가져옵니다.
+
+    if (!desiredCgtCode1.includes(cgtCode)) {
+        $("div#categoryOne_menu a[name='apple']").remove();
+    }
+
+    if (!desiredCgtCode2.includes(cgtCode)) {
+        $("div#categoryOne_menu a[name='samsung']").remove();
+    }
+
+    if (!desiredCgtCode3.includes(cgtCode)) {
+        $("div#categoryOne_menu a[name='google']").remove();
+    }
+});
+
+
+
+
+
 //ready event end
 </script>
+<script src="/js/category_menu.js"></script>
 
   </body>
 </html>

@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	//1차카테고리 오버
-	$("div#category_menu  li a").on("mouseover", function(e) {
+	$("div#categoryOne_menu  li a").on("mouseover", function(e) {
 		e.preventDefault();  //a태그의 링크기능을 제거
 		//console.log("1차카테고리 오버");
 		let sel_one_category = $(this);
@@ -10,11 +10,11 @@ $(document).ready(function() {
 
 		
 
-		let url = '/category/twoCategory/' + cgt_code;
+		let url = '/category/twooCategory/' + cgt_code;
 		$.getJSON(url, function(category) {
 
 			console.log(category);
-			let str = "<ul class='nav justify-content-center' id='two_category'>";
+			let str = "<ul class='nav justify-content-center' id='twoo_category'>";
 			for(let i=0; i<category.length; i++) {
 				str += '<li class="nav-item">';
 				str +=  '<a class="nav-link" href="#" data-cgt_code="'+ category[i].cgt_code +'" data-cgt_name="' + category[i].cgt_name +'">'+ category[i].cgt_name + '</a>';
@@ -54,7 +54,7 @@ $(document).ready(function() {
 
 
 
-	$("div#category_menu").on("click", "ul#two_category li a", function(e) {
+	$("div#categoryOne_menu").on("click", "ul#twoo_category li a", function(e) {
 		e.preventDefault();
 		let sel_two_category = $(this);
 		let cgt_code = $(this).data("cgt_code");
@@ -89,7 +89,7 @@ $(document).ready(function() {
 				});
 				*/
 
-				$("div#category_menu").on("click", "ul#three_category li a", function() {
+				$("div#categoryOne_menu").on("click", "ul#three_category li a", function() {
 					let cgt_code = $(this).data("cgt_code");
 					let cgt_name = $(this).data("cgt_name");
 					location.href = `/user/product/prod_list?cgt_code=${cgt_code}&cgt_name=${cgt_name}`;
