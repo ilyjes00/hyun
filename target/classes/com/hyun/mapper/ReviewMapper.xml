@@ -11,6 +11,37 @@
 	VALUES
 		(seq_review_tbl.NEXTVAL, #{mbsp_id}, #{prod_num}, #{rew_content}, #{rew_score})
    </insert>
+   
+   	<select id="list" parameterType="map" resultType="com.hyun.domain.ReviewVO">
+	      <![CDATA[
+      select 
+          REW_NUM, MBSP_ID, PROD_NUM, REW_CONTENT, REW_SCORE, REW_REGDATE
+      from 
+          (
+          select /*+INDEX_DESC(REVIEW_TBL PK_REVIEW_TBL) */	
+              rownum rn, rew_num, mbsp_id, prod_num, rew_content, rew_score, rew_regdate
+          from 
+              REVIEW_TBL
+          where 
+          
+             prod_num = #{prod_num}
+             and    
+              rownum <= #{cri.pageNum} * #{cri.amount}
+          )
+      where 
+          rn > (#{cri.pageNum} -1) * #{cri.amount}
+      ]]>
+	</select>
+	
+	<select id="listCount" parameterType="Integer" resultType="int">
+	SELECT
+		count(*)
+	FROM
+		REVIEW_TBL
+	WHERE
+		prod_num = #{prod_num}
+	
+	</select>
 
 
   </mapper>

@@ -23,6 +23,30 @@
 <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+<script id="reviewTemplate" type="text/x-handlebars-template">
+  <table class="table table-sm">
+     <thead>
+        <tr>
+           <th scope="col">번호</th>
+           <th scope="col">리뷰내용</th>
+           <th scope="col">평점</th>
+           <th scope="col">날짜</th>
+        </tr>
+     </thead>
+     <tbody>
+        {{#each .}}
+        <tr>
+           <th scope="row">{{rew_num}}</th>
+           <td>{{rew_content}}</td>
+           <td>{{convertRating rew_score}}</td>
+           <td>{{convertDate rew_regdate}}</td>
+        </tr>
+        {{/each}}
+     </tbody>
+  </table>
+</script>
+
 <script>
   $( function() {
     $( "#tabs_prod_detail" ).tabs();
@@ -135,7 +159,12 @@ p#star_rv_score a.rv_score.on {
           <p>${productVO.prod_content }</p>
         </div>
         <div id="tabs-proreview">
-          <p>상품후기</p>
+          <p>상품후기 목록</p>
+          <div class="row">
+            <div class="col-md-12" id="review_list">
+
+            </div>
+          </div>
           <div class="row">
             <div class="col-md-12 text-right">
               <button type="button" id="btn_review_write" class="btn btn-primary" data-prod_num="${productVO.prod_num }">상품후기작성</button>
@@ -299,6 +328,82 @@ let reviewPage = 1;     //목록에서 1번째 페이지를 의미
 //@GetMapping("/list/{prod_num}/{page}")
 let url = "/user/review/list" + 상품코드 + "/" +reviewPage;
 */
+
+let reviewPage = 1;     //목록에서 1번째 페이지를 의미
+//@GetMapping("/list/{prod_num}/{page}")
+let url = "/user/review/list/" + "${productVO.prod_num }" + "/" +reviewPage;
+
+getReviewInfo(url);
+
+function getReviewInfo(url) {
+  $.getJSON(url, function(data) {
+    //console.log("상품후기 :" + data.list[0].rew_content);
+    //console.log("페이지넘버 :" + data.pageMaker.total);
+    //review_list
+
+    printReviewList(data.list, $("#review_list"), $("#reviewTemplate"))
+
+  });
+}
+
+//상품후기작업함수
+let printReviewList = function(reviewDate , target , template) {
+  let templasteObj = Handlebars.compile(template.html());
+  let reviewHtml = templasteObj(reviewDate);
+
+  //상품후기목록 위치를 참조하여 추가
+  $("#review_list").children().remove();
+  target.append(reviewHtml);
+
+
+}
+//사용자 정의 Helper (핸들바의 함수)
+//상품후기 등록일 milisecond ->자바스크립트의 Date객체로 변환.
+Handlebars.registerHelper("convertDate", function(reviewtime) {
+
+  const dateObj = new Date(reviewtime);
+  let year = dateObj.getFullYear();
+  let month = dateObj.getMonth() + 1;
+  let date = dateObj.getDate();
+  let hour = dateObj.getHours();
+  let minute = dateObj.getMinutes();
+
+  return year + "/" + month + "/" + date + " " + hour + ":" + minute;
+});
+
+//별점 값을 별 텍스트로 변경하기
+Handlebars.registerHelper("convertRating", function(rating) {
+  let starStr = "";
+  switch(rating) {
+    case 1:
+    starStr = "★☆☆☆☆"
+    break;
+    case 2:
+    starStr = "★★☆☆☆"
+    break;
+    case 3:
+    starStr = "★★★☆☆"
+    break;
+    case 4:
+    starStr = "★★★★☆"
+    break;
+    case 5:
+    starStr = "★★★★★"
+    break;
+
+  }
+
+  return starStr;
+});
+
+
+
+
+//페이징작업함수
+
+
+
+
 
 
 //상품후기저장

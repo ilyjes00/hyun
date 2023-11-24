@@ -1,6 +1,8 @@
 package com.hyun.controller;
 
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hyun.dto.Criteria;
+import com.hyun.dto.PageDTO;
 import com.hyun.domain.MemberVO;
 import com.hyun.domain.ReviewVO;
 import com.hyun.service.ReviewService;
@@ -51,6 +55,31 @@ public class ReviewController {
 		public ResponseEntity<Map<String, Object>> list(@PathVariable("prod_num") Integer prod_num, @PathVariable("page") int page) throws Exception{
 
 		ResponseEntity<Map<String, Object>> entity = null;
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		//1)상품후기목록 페이지
+		Criteria cri = new Criteria();
+		cri.setAmount(20); //페이지수
+		cri.setPageNum(page);
+		
+		//2)db연동작업
+		List<ReviewVO> list = reviewService.list(prod_num, cri);
+		
+		//3)페이징페이지
+		int listCount = reviewService.listCount(prod_num);
+		PageDTO pageMaker = new PageDTO(cri, listCount);
+		
+		map.put("list", list); // 상품후기목록데이터 - List<ReviewVO>
+		map.put("pageMaker", pageMaker); //페이징데이터 - PageDTO
+		
+		//리턴타입에 따른 구문
+		// -select문
+		//ResponseEntity<Map<String, Object>> : 1)상품후기목록데이터 - List<ReviewVO>  2)페이징 데이터	-PageDTO 둘다써야하므로 이문법을사용
+		//ResponseEntity<List<ReviewVO>> : 1)상품후기목록데이터 - List<ReviewVO>
+		//ResponseEntity<PageDTO> : 페이징데이터
+		
+		// jackson-databind 라이브러리에 의하여 map -> json 으로 변환되어 ajax 호출한 쪽으로 리턴값이 보내진다.
+		entity = new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
 		
 		return entity;
 		

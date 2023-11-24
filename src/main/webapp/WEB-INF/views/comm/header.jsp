@@ -21,9 +21,15 @@
   <div class=hide-at-start-wrapper>
     <nav class="bmenu panel animated">
       <a><span></span></a>
-      <a href=#/home.html><span class=triangle-origin>Home</span></a>
-      <a href=#/markets.html><span class=triangle-origin>Markets</span></a>
-      <a href=#/technology.html><span class=triangle-origin>Technology</span></a>
+      <a style="font-size: small;"><span>기기구매하기</span></a>
+      <a href=#/home.html><span class=triangle-origin>애플</span></a>
+      <a href=#/markets.html><span class=triangle-origin>삼성</span></a>
+      <a href=#/technology.html><span class=triangle-origin>구글</span></a>
+      <a><span></span></a>
+      <a><span></span></a>
+      <a><span></span></a>
+      <a><span></span></a>
+      <a><span></span></a>
       <a><span></span></a>
       <a><span></span></a>
       <a><span></span></a>
@@ -35,130 +41,147 @@
         <div class=column>
           </div>
           </article>
+       <article class=panel>
+        <div class=column>
+          </div>
+          </article>
+          
       <article class=panel>
         <div class=column>
           <section class=titled-group>
-              <header>Read</header>
-              <a href="/user/product/prod_list?cgt_code=5&cgt_name=아이폰15 pro">아이폰15 Pro</a>
-              <a href=#/crypto.html>Crypto</a>
-              <a href=#/hyperdrive.html>Hyperdrive</a>
-              <a href=#/prognosis.html>Prognosis</a>
-              <a href=#/climatechanged.html>Climate Changed</a>
-              <a href=#/equality.html>Equality</a>
-              <a href=#/billionaires.html>Billionaires</a>
-              <a href=#/graphics.html>Graphics</a>
-              <a href=#/sponsoredcontent.html>Sponsored Content</a>
+          	  <a></a>
+              <header>아이폰</header>
+              <a href="/user/product/prod_list?cgt_code=5&cgt_name=아이폰15 Pro">아이폰15 Pro</a>
+              <a href="/user/product/prod_list?cgt_code=6&cgt_name=아이폰15 Pro Max">아이폰15 Pro Max</a>
+              <a href="/user/product/prod_list?cgt_code=7&cgt_name=아이폰15 Pro Plus">아이폰15 Pro Plus</a>
+              <a href="/user/product/prod_list?cgt_code=8&cgt_name=아이폰15 ">아이폰15</a>
+              <a href="/user/product/prod_list?cgt_code=9&cgt_name=아이폰14 Pro">아이폰14 Pro</a>
+              <a href="/user/product/prod_list?cgt_code=10&cgt_name=아이폰14 Pro Max">아이폰14 Pro Max</a>
+              <a href="/user/product/prod_list?cgt_code=11&cgt_name=아이폰14 Pro Plus">아이폰14 Pro Plus</a>
+              <a href="/user/product/prod_list?cgt_code=12&cgt_name=아이폰14">아이폰14</a>
+              <a href="/user/product/prod_list?cgt_code=13&cgt_name=아이폰13 Pro">아이폰13 Pro</a>
+              <a href="/user/product/prod_list?cgt_code=14&cgt_name=아이폰13 Pro Max">아이폰13 Pro Max</a>
+              <a href="/user/product/prod_list?cgt_code=15&cgt_name=아이폰13">아이폰13</a>
+              <a href="/user/product/prod_list?cgt_code=16&cgt_name=아이폰13 Mini">아이폰13 Mini</a>
           </section>
           </div>
           <div class=column>
           <section class=titled-group>
-              <header>Watch</header>
-              <a href=#/thedavidrubensteinshow.html>The David Rubenstein Show</a>
-              <a href=#/brilliantideas.html>Brilliant Ideas</a>
-              <a href=#/inspirego.html>Inspire GO</a>
+              <a></a>
+              <header>에어팟</header>
+              <a href="/user/product/prod_list?cgt_code=18&cgt_name=에어팟 Pro 2세대">에어팟 Pro 2세대</a>
+              <a href="/user/product/prod_list?cgt_code=19&cgt_name=에어팟 Pro 1세대">에어팟 Pro 1세대</a>
+              <a href="/user/product/prod_list?cgt_code=20&cgt_name=에어팟 3세대">에어팟 3세대</a>
+              <a href="/user/product/prod_list?cgt_code=21&cgt_name=에어팟 2세대">에어팟 2세대</a>
           </section>
         </div>
         <div class=column>
           <section class=titled-group>
-              <header>Special Reports</header>
-              <a href=#/wheretoinvest$10,000.html>Where to Invest $10,000</a>
-              <a href=#/50companiestowatchin2018.html>50 Companies to Watch in 2018</a>
-              <a href=#/what'sinsidealltheiphones.html>What's Inside All the iPhones</a>
+              <a></a>
+              <header>아이패드</header>
+              <a href="/user/product/prod_list?cgt_code=23&cgt_name=아이패드 10.9' (10세대)">아이패드 10.9" (10세대)</a>
+              <a href="/user/product/prod_list?cgt_code=24&cgt_name=아이패드 Air (4세대/5세대)">아이패드 Air (4세대/5세대)</a>
+              <a href="/user/product/prod_list?cgt_code=25&cgt_name=아이패드 Mini (6세대)">아이패드 Mini (6세대)</a>
+              <a href="/user/product/prod_list?cgt_code=26&cgt_name=아이패드 Pro 12.9' (5세대/6세대)">아이패드 Pro 12.9" (5세대/6세대)</a>
+              <a href="/user/product/prod_list?cgt_code=27&cgt_name=아이패드 Pro 11' (3세대/4세대)">아이패드 Pro 11" (3세대/4세대)</a>
+              <a href="/user/product/prod_list?cgt_code=28&cgt_name=아이패드 Pro 11' (1세대)">아이패드 Pro 11" (1세대)</a>
+          </section>
+          </div>
+                  <div class=column>
+          <section class=titled-group>
+              <a></a>
+              <header>맥북</header>
+              <a href="/user/product/prod_list?cgt_code=30&cgt_name=맥북 Air 15인치 (2023)">맥북 Air 15인치 (2023)</a>
+              <a href="/user/product/prod_list?cgt_code=31&cgt_name=맥북 Pro 14인치 (2021 / 2023)">맥북 Pro 14인치 (2021 / 2023)</a>
+              <a href="/user/product/prod_list?cgt_code=32&cgt_name=맥북 Pro 16인치 (2021 / 2023)">맥북 Pro 16인치 (2021 / 2023)</a>
+              <a href="/user/product/prod_list?cgt_code=33&cgt_name=맥북 Air 13.6인치 (2022)">맥북 Air 13.6인치 (2022)</a>
+              <a href="/user/product/prod_list?cgt_code=34&cgt_name=맥북 Air 13인치 (2018 - 2020)">맥북 Air 13인치 (2018 - 2020)</a>
+              <a href="/user/product/prod_list?cgt_code=35&cgt_name=맥북 Air 13인치 (2010 - 2017)">맥북 Air 13인치 (2010 - 2017)</a>
+              <a href="/user/product/prod_list?cgt_code=36&cgt_name=맥북 Pro 13인치 (2020 / 2022)">맥북 Pro 13인치 (2020 / 2022)</a>
+              <a href="/user/product/prod_list?cgt_code=37&cgt_name=맥북 Pro 13인치 (2016 - 2019)">맥북 Pro 13인치 (2016 - 2019)</a>
+              <a href="/user/product/prod_list?cgt_code=38&cgt_name=맥북 Pro 15인치 (2016 - 2019)">맥북 Pro 15인치 (2016 - 2019)</a>
+              <a href="/user/product/prod_list?cgt_code=39&cgt_name=맥북 Pro 16인치 (2019)">맥북 Pro 16인치 (2019)</a>
+          </section>
+          </div>
+          <div class=column>
+          <section class=titled-group>
+              <a></a>
+              <header>애플워치</header>
+              <a href="/user/product/prod_list?cgt_code=41&cgt_name=38 / 40 / 41mm">38 / 40 / 41mm</a>
+              <a href="/user/product/prod_list?cgt_code=42&cgt_name=42 / 44 / 45 / 49mm">42 / 44 / 45 / 49mm</a>
+              <a href="/user/product/prod_list?cgt_code=43&cgt_name=기타 애플 워치 케이스">기타 애플 워치 케이스</a>
+        </section>
+        
+         <div class=column>
+          <section class=titled-group>
+              <a></a>
+              <header>애플 액세서리</header>
+              <a href="/user/product/prod_list?cgt_code=45&cgt_name=에어태그 케이스">에어태그 케이스</a>
+              <a href="/user/product/prod_list?cgt_code=46&cgt_name=맥세이프 카드 지갑">맥세이프 카드 지갑</a>
+              <a href="/user/product/prod_list?cgt_code=47&cgt_name=맥세이프 배터리 팩 케이스">맥세이프 배터리 팩 케이스</a>
+          </section>
+        </div>
+        </div>
+      </article>
+      <article class=panel>
+         <div class=column>
+          <section class=titled-group>
+              <a></a>
+              <header>갤럭시 S시리즈</header>
+              <a href="/user/product/prod_list?cgt_code=49&cgt_name=갤럭시S23 FE">갤럭시S23 FE</a>
+              <a href="/user/product/prod_list?cgt_code=50&cgt_name=갤럭시S23">갤럭시S23</a>
+              <a href="/user/product/prod_list?cgt_code=51&cgt_name=갤럭시S23 울트라">갤럭시S23 울트라</a>
+              <a href="/user/product/prod_list?cgt_code=52&cgt_name=갤럭시S23+">갤럭시S23+</a>
+              <a href="/user/product/prod_list?cgt_code=53&cgt_name=갤럭시S20">갤럭시S20</a>
+              <a href="/user/product/prod_list?cgt_code=54&cgt_name=갤럭시S20 울트라">갤럭시S20 울트라</a>
+          </section>
+          </div>
+          <div class=column>
+          <section class=titled-group>
+          </section>
+          </div>
+         <div class=column>
+          <section class=titled-group>
+              <a></a>
+              <header>갤럭시 Z시리즈</header>
+              <a href="/user/product/prod_list?cgt_code=56&cgt_name=갤럭시 Z 플립5">갤럭시 Z 플립5</a>
+              <a href="/user/product/prod_list?cgt_code=57&cgt_name=갤럭시 Z 플립5">갤럭시 Z 폴드5</a>
+              <a href="/user/product/prod_list?cgt_code=58&cgt_name=갤럭시 Z 플립5">갤럭시 Z 플립4</a>
+              <a href="/user/product/prod_list?cgt_code=59&cgt_name=갤럭시 Z 플립5">갤럭시 Z 폴드4</a>
+              <a href="/user/product/prod_list?cgt_code=60&cgt_name=갤럭시 Z 플립5">갤럭시 Z 플립3</a>
+              <a href="/user/product/prod_list?cgt_code=61&cgt_name=갤럭시 Z 플립5">갤럭시 Z 폴드3</a>
+          </section>
+          </div>
+          <div class=column>
+          <section class=titled-group>
+          </section>
+          </div>
+         <div class=column>
+          <section class=titled-group>
+              <a></a>
+              <header>갤럭시 버즈</header>
+              <a href="/user/product/prod_list?cgt_code=63&cgt_name=갤럭시 버즈2 프로">갤럭시 버즈2 프로</a>
+              <a href="/user/product/prod_list?cgt_code=64&cgt_name=갤럭시 버즈2">갤럭시 버즈2</a>
+              <a href="/user/product/prod_list?cgt_code=65&cgt_name=갤럭시 버즈 프로">갤럭시 버즈 프로</a>
+              <a href="/user/product/prod_list?cgt_code=66&cgt_name=갤럭시 버즈 라이브">갤럭시 버즈 라이브</a>
+              <a href="/user/product/prod_list?cgt_code=67&cgt_name=갤럭시 버즈 케이스 기타">갤럭시 버즈 케이스 기타</a>
           </section>
           </div>
       </article>
       <article class=panel>
-        <div class=column>
+         <div class=column>
           <section class=titled-group>
-              <header>Read</header>
-              <a href=#/economics.html>Economics</a>
-              <a href=#/deals.html>Deals</a>
-              <a href=#/fixedincome.html>Fixed Income</a>
-              <a href=#/etfs.html>ETFs</a>
-              <a href=#/benchmark.html>Benchmark</a>
-              <a href=#/marketsmagazine.html>Markets Magazine</a>
+              <a></a>
+              <header>구글 Pixel</header>
+              <a href="/user/product/prod_list?cgt_code=69&cgt_name=Pixel 8 Pro">Pixel 8 Pro</a>
+              <a href="/user/product/prod_list?cgt_code=70&cgt_name=Pixel 8">Pixel 8</a>
+              <a href="/user/product/prod_list?cgt_code=71&cgt_name=Pixel Fold">Pixel Fold</a>
+              <a href="/user/product/prod_list?cgt_code=72&cgt_name=Pixel 7 Pro">Pixel 7 Pro</a>
+              <a href="/user/product/prod_list?cgt_code=73&cgt_name=Pixel 7">Pixel 7</a>
+              <a href="/user/product/prod_list?cgt_code=74&cgt_name=Pixel 6 Pro">Pixel 6 Pro</a>
+              <a href="/user/product/prod_list?cgt_code=75&cgt_name=Pixel 6">Pixel 6</a>
           </section>
           </div>
-          <div class=column>
-          <section class=titled-group>
-              <header>Watch</header>
-              <a href=#/daybreak.html>Daybreak</a>
-              <a href=#/surveillance.html>Surveillance</a>
-              <a href=#/markets.html>Markets</a>
-              <a href=#/what'dyoumiss.html>What'd You Miss</a>
-          </section>
-          </div>
-          <div class=column>
-          <section class=titled-group>
-              <header>Follow</header>
-              <a href=#/twitter.html>Twitter</a>
-              <a href=#/facebook.html>Facebook</a>
-          </section>
-        </div>
-        <div class=column>
-          <section class=titled-group>
-              <header>Data</header>
-              <a href=#/stocks.html>Stocks</a>
-              <a href=#/currencies.html>Currencies</a>
-              <a href=#/commodities.html>Commodities</a>
-              <a href=#/rates-and-bonds.html>Rates &amp; Bonds</a>
-              <a href=#/sectors.html>Sectors</a>
-              <a href=#/economiccalendar.html>Economic Calendar</a>
-          </section>
-          </div>
-          <div class=column>
-          <section class=titled-group>
-              <header>Listen</header>
-              <a href=#/trillions.html>Trillions</a>
-              <a href=#/oddlots.html>Odd Lots</a>
-              <a href=#/surveillance.html>Surveillance</a>
-              <a href=#/benchmark.html>Benchmark</a>
-              <a href=#/p-and-l.html>P&amp;L</a>
-          </section>
-        </div>
-      </article>
-      <article class=panel>
-        <div class=column>
-          <section class=titled-group>
-              <header>Read</header>
-              <a href=#/Cybersecurity.html>Cybersecurity</a>
-              <a href=#/Startups.html>Startups</a>
-              <a href=#/AI.html>AI</a>
-              <a href=#/Mobile.html>Mobile</a>
-              <a href="#/Big+Data.html">Big Data</a>
-              <a href="#/Cloud+Computing.html">Cloud Computing</a>
-              <a href=#/U.S.html>U.S.</a>
-              <a href=#/Global.html>Global</a>
-          </section>
-          </div>
-          <div class=column>
-          <section class=titled-group>
-              <header>Special Reports</header>
-              <a href="#/The Elon Musk Tracker.html">The Elon Musk Tracker</a>
-              <a href="#/Tesla Model 3 Tracker.html">Tesla Model 3 Tracker</a>
-          </section>  
-        </div>
-        <div class=column>
-          <section class=titled-group>
-              <header>Watch</header>
-              <a href="#/Gadgets with Gurman.html">Gadgets with Gurman</a>
-              <a href="#/Digital Defense.html">Digital Defense</a>
-              <a href="#/Bloomberg Technology TV.html">Bloomberg Technology TV</a>
-              <a href="#/Studio 1.0.html">Studio 1.0</a>
-          </section>
-          <div class=column>
-          <section class=titled-group>
-              <header>Listen</header>
-              <a href=#/Decrypted.html>Decrypted</a>
-          </section>
-          </div>
-          <div class=column>
-          <section class=titled-group>
-              <header>Follow</header>
-              <a href=#/Twitter.html>Twitter</a>
-              <a href=#/Facebook.html>Facebook</a>
-          </section>
-        </div>
       </article>
     </nav>
   </div>
