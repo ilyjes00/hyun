@@ -9,6 +9,8 @@ public interface ReviewService {
 
 	void review_insert(ReviewVO vo);
 	
+	void review_modify(ReviewVO vo);
+	
 	List<ReviewVO> list(Integer prod_num, Criteria cri);
 	
 	int listCount(Integer prod_num);

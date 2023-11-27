@@ -48,6 +48,15 @@
 	WHERE
 		rew_num = #{rew_num}
 	</delete>
+	<update id="review_modify" parameterType="com.hyun.domain.ReviewVO">
+	UPDATE
+		REVIEW_TBL
+	SET
+		REW_CONTENT = #{rew_content}, rew_score = #{rew_score}
+	WHERE
+		REW_NUM = #{rew_num}
+	
+	</update>
 
 
   </mapper>
