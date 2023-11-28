@@ -4,6 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
   <mapper namespace="com.hyun.mapper.QnaMapper">
+  
+     <insert id="qna_insert" parameterType="com.hyun.domain.QnaVO">
+   
+   INSERT 
+   		INTO QA_TBL(qa_num, mbsp_id, prod_num, qa_content)
+	VALUES
+		(seq_qa_tbl.NEXTVAL, #{mbsp_id}, #{prod_num}, #{qa_content})
+   </insert>
 
 
   </mapper>

@@ -2,6 +2,7 @@ package com.hyun.service;
 
 import org.springframework.stereotype.Service;
 
+import com.hyun.domain.QnaVO;
 import com.hyun.mapper.QnaMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -11,5 +12,11 @@ import lombok.RequiredArgsConstructor;
 public class QnaServiceImpl implements QnaService {
 
 	private final QnaMapper qnaMapper;
+
+	@Override
+	public void qna_insert(QnaVO vo) {
+		// TODO Auto-generated method stub
+		qnaMapper.qna_insert(vo);
+	}
 
 }
