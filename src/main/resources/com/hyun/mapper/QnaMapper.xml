@@ -13,5 +13,31 @@
 		(seq_qa_tbl.NEXTVAL, #{mbsp_id}, #{prod_num}, #{qa_content})
    </insert>
 
+   	<select id="list" parameterType="map" resultType="com.hyun.domain.QnaVO">
+	      <![CDATA[
+      select 
+          QA_NUM, MBSP_ID, PROD_NUM, QA_REGDATE, QA_CONTENT, MBSP_ID
+      from 
+          (
+          select /*+INDEX_DESC(QA_TBL PK_QA_NUM) */	
+              rownum rn, qa_num, mbsp_id, prod_num, qa_regdate, qa_content, mbsp_id
+          from 
+              QA_TBL
+          where 
+          
+             prod_num = #{prod_num}
+             and    
+              rownum <= #{cri.pageNum} * #{cri.amount}
+          )
+      where 
+          rn > (#{cri.pageNum} -1) * #{cri.amount}
+      ]]>
+	</select>
+		<select id="getTotalCount" resultType ="int">
+		SELECT COUNT(*) FROM QA_TBL WHERE
+		
+		<include refid="criteria"></include>
+		PROD_NUM > 0
+	</select>
 
   </mapper>

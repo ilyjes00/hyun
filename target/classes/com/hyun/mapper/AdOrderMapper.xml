@@ -54,5 +54,68 @@
 		<include refid="criteria"></include>
 		ORD_CODE > 0
 	</select>
+	
+		<select id="orderDetailInfo1" parameterType="Long" resultType="com.hyun.domain.OrderDetailInfoVO">
+		SELECT 
+			OT.ORD_CODE, OT.PROD_NUM, OT.DT_AMOUNT * P.PROD_PRICE as ord_price , P.PROD_NAME, P.PROD_PRICE, P.PROD_UP_FOLDER, P.PROD_IMG
+		FROM 
+			ORDETAIL_TBL OT, PRODUCT_TBL P
+		WHERE 
+			OT.PROD_NUM = P.PROD_NUM
+		AND 
+			OT.ORD_CODE = #{ord_code}
+	</select>
+		<!-- resultType을 사용하지않고, resultMap을 사용한경우 -->
+	<!-- 클래스안에 다른클래스가 필드 -->
+		<select id="orderDetailInfo2" parameterType="Long" resultMap="orderDetailProductMap">
+		SELECT 
+			OT.ORD_CODE, OT.PROD_NUM, OT.DT_AMOUNT , P.PROD_NAME, P.PROD_PRICE, P.PROD_UP_FOLDER, P.PROD_IMG
+		FROM 
+			ORDETAIL_TBL OT, PRODUCT_TBL P
+		WHERE 
+			OT.PROD_NUM = P.PROD_NUM
+		AND 
+			OT.ORD_CODE = #{ord_code}
+	</select>
+	
+	<resultMap type="com.hyun.domain.OrderDetailProductVO" id="orderDetailProductMap">
+		<collection property="orderDetailVO" resultMap="orderDetailMap"></collection>
+		<collection property="productVO" resultMap="productVOMap"></collection>
+	</resultMap>
+	
+	<!-- resultMap : 테이블의 컬럼명과 클래스의 필드명이 다를경우 매핑하는 목적. -->
+	
+	<!-- orderDetailVO필드에서 필요한 정보 -->
+	<resultMap type="com.hyun.domain.OrderDetailVO" id="orderDetailMap">
+		<id property="ord_code" column="ord_code"/>
+		<id property="prod_num" column="prod_num"/>
+		<result property="dt_amount" column="dt_amount"/>
+		<result property="dt_price" column="dt_price"/>
+	</resultMap>
+	
+		<resultMap type="com.hyun.domain.ProductVO" id="productVOMap">
+		<id property="prod_num" column="prod_num"/>
+		<result property="cg_code" column="cg_code"/>
+		<result property="prod_name" column="prod_name"/>
+		<result property="prod_price" column="prod_price"/>
+		<result property="prod_discount" column="prod_discount"/>
+		<result property="prod_publisher" column="prod_publisher"/>
+		<result property="prod_content" column="prod_content"/>
+		<result property="prod_up_folder" column="prod_up_folder"/>
+		<result property="prod_img" column="prod_img"/>
+		<result property="prod_amount" column="prod_amount"/>
+		<result property="prod_buy" column="prod_buy"/>
+		<result property="prod_date" column="prod_date"/>
+		<result property="prod_updatedate" column="prod_updatedate"/>
+	</resultMap>
+	
+	<delete id="order_product_delete" parameterType="map">
+	DELETE FROM
+		ORDETAIL_TBL
+	WHERE
+		ORD_CODE = #{ord_code} AND PROD_NUM = #{prod_num}
+		
+	
+	</delete>
 
   </mapper>
