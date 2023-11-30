@@ -9,8 +9,10 @@ public interface QnaService {
 	
 	void qna_insert(QnaVO vo);
 	
-	List<QnaVO> qna_list(String mbsp_id, Criteria cri);
+	List<QnaVO> qna_list(Integer qa_num, Criteria cri);
 	
-	int getTotalCount(Criteria cri);
+	int getTotalCount();
+	
+	QnaVO qna_detail(Integer qa_num);
 
 }

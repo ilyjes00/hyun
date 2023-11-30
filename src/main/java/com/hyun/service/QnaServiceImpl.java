@@ -22,16 +22,31 @@ public class QnaServiceImpl implements QnaService {
 		qnaMapper.qna_insert(vo);
 	}
 
-	@Override
-	public List<QnaVO> qna_list(Criteria cri) {
-		// TODO Auto-generated method stub
-		return qnaMapper.qna_list(cri);
-	}
+
+
+
 
 	@Override
-	public int getTotalCount(Criteria cri) {
+	public List<QnaVO> qna_list(Integer qa_num, Criteria cri) {
 		// TODO Auto-generated method stub
-		return qnaMapper.getTotalCount(cri);
+		return qnaMapper.qna_list(qa_num, cri);
+	}
+
+
+	@Override
+	public QnaVO qna_detail(Integer qa_num) {
+		// TODO Auto-generated method stub
+		return qnaMapper.qna_detail(qa_num);
+	}
+
+
+
+
+
+	@Override
+	public int getTotalCount() {
+		// TODO Auto-generated method stub
+		return qnaMapper.getTotalCount();
 	}
 
 }

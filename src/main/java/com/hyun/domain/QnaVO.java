@@ -18,9 +18,8 @@ public class QnaVO {
         
         qa_num, mbsp_id, prod_num, qa_content, qa_regdate, admin
 	  */
-	private Long qa_num;
+	private Integer qa_num;
 	private String mbsp_id;
-	private Integer prod_num;
 	private String qa_content;
 	private Date qa_regdate;
 	private String admin;

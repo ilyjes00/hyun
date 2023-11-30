@@ -5,39 +5,68 @@
  
   <mapper namespace="com.hyun.mapper.QnaMapper">
   
+  <sql id="criteria">
+	<trim prefix="(" suffix=") AND" prefixOverrides="OR">
+		<foreach collection="typeArr" item="type">
+			<trim prefix="OR">
+				<choose>
+					<when test="type == 'N'.toString()">
+						PROD_NAME like '%' || #{keyword} || '%'
+					</when>
+									
+					<when test="type == 'C'.toString()">
+						PROD_NUM like '%' || #{keyword} || '%'
+					</when>
+					
+					<when test="type == 'P'.toString()">
+						PROD_PUBLISHER like '%' || #{keyword} || '%'
+					</when>
+				</choose>
+			</trim>
+		</foreach>
+	</trim>
+	</sql>
+  
      <insert id="qna_insert" parameterType="com.hyun.domain.QnaVO">
    
    INSERT 
-   		INTO QA_TBL(qa_num, mbsp_id, prod_num, qa_content)
+   		INTO QA_TBL(qa_num, mbsp_id, qa_content)
 	VALUES
-		(seq_qa_tbl.NEXTVAL, #{mbsp_id}, #{prod_num}, #{qa_content})
+		(seq_qa_tbl.NEXTVAL, #{mbsp_id}, #{qa_content})
    </insert>
 
    	<select id="list" parameterType="map" resultType="com.hyun.domain.QnaVO">
 	      <![CDATA[
       select 
-          QA_NUM, MBSP_ID, PROD_NUM, QA_REGDATE, QA_CONTENT, MBSP_ID
+          QA_NUM, MBSP_ID, QA_REGDATE, QA_CONTENT, MBSP_ID
       from 
           (
           select /*+INDEX_DESC(QA_TBL PK_QA_NUM) */	
-              rownum rn, qa_num, mbsp_id, prod_num, qa_regdate, qa_content, mbsp_id
+              rownum rn, qa_num, mbsp_id, qa_regdate, qa_content, mbsp_id
           from 
               QA_TBL
           where 
           
-             prod_num = #{prod_num}
+             qa_num = #{qa_num}
              and    
               rownum <= #{cri.pageNum} * #{cri.amount}
           )
       where 
           rn > (#{cri.pageNum} -1) * #{cri.amount}
       ]]>
+		<include refid="criteria"></include>
+		<![CDATA[ 
+		rownum <= #{pageNum} * #{amount}
+	)
+	where rn > (#{pageNum} -1) * #{amount} 
+	]]>
 	</select>
+	
 		<select id="getTotalCount" resultType ="int">
 		SELECT COUNT(*) FROM QA_TBL WHERE
 		
 		<include refid="criteria"></include>
-		PROD_NUM > 0
+		QA_NUM > 0
 	</select>
 
   </mapper>

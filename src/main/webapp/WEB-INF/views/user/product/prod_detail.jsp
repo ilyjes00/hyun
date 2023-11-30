@@ -275,6 +275,11 @@ url: '/user/Cart/cart_add',
 type: 'post',
 data: {prod_num : $(this).data("prod_num"), cart_amount :  $("#btn_quantity").val()},
 dataType: 'text',
+//인스펙터에서 ajax구문에 에러를보내는데 받기위한 작업
+beforeSend: function(xhr) {
+xhr.setRequestHeader("AJAX" , "true");
+},
+
 success: function(result) {
   if(result === "success"){
     alert("장바구니에 추가됨");
@@ -282,7 +287,12 @@ success: function(result) {
       location.href = "/user/Cart/cart_list";
     }
   }
-}
+},          
+    error : function(xhr, status, error) {
+    alert(status);
+    alert("로그인 페이지로 이동합니다.");
+    location.href="/member/login";
+    }
 });
 });
 
@@ -551,6 +561,10 @@ $("#btn_review_modify").on("click", function() {
   type : 'put',
   data : JSON.stringify(review_data), //object -> json으로 변환
   dataType : 'text',
+  //인스펙터에서 ajax구문에 에러를보내는데 받기위한 작업
+  beforeSend: function(xhr) {
+  xhr.setRequestHeader("AJAX" , "true");
+  },
   success : function(result) {
     if(result == 'success') {
       alert("상품평이 수정됨.");
@@ -558,7 +572,12 @@ $("#btn_review_modify").on("click", function() {
       //상품평 불러오는작업
       getReviewInfo(url);
     }
-  }
+  },          
+    error : function(xhr, status, error) {
+    alert(status);
+    alert("로그인 페이지로 이동합니다.");
+    location.href="/member/login";
+    }
 });
 });
 
@@ -585,6 +604,10 @@ $("div#review_list").on("click" ,"button[name='btn_review_del']", function() {
   type : 'delete',
   data : JSON.stringify(rew_num), //object -> json으로 변환
   dataType : 'text',
+  //인스펙터에서 ajax구문에 에러를보내는데 받기위한 작업
+  beforeSend: function(xhr) {
+  xhr.setRequestHeader("AJAX" , "true");
+  },
   success : function(result) {
     if(result == 'success') {
       alert("상품평이 삭제됨.");
@@ -595,7 +618,12 @@ $("div#review_list").on("click" ,"button[name='btn_review_del']", function() {
       url = "/user/review/list/" + "${ProductVO.prod_num}" + "/" + reviewPage;
       getReviewInfo(url);
     }
-  }
+  },          
+    error : function(xhr, status, error) {
+    alert(status);
+    alert("로그인 페이지로 이동합니다.");
+    location.href="/member/login";
+    }
 });
 });
 
@@ -657,6 +685,10 @@ $.ajax({
   type : 'post',
   data : JSON.stringify(review_data), //object -> json으로 변환
   dataType : 'text',
+  //인스펙터에서 ajax구문에 에러를보내는데 받기위한 작업
+  beforeSend: function(xhr) {
+  xhr.setRequestHeader("AJAX" , "true");
+  },
   success : function(result) {
     if(result == 'success') {
       alert("상품평이 등록됨.");
@@ -664,7 +696,12 @@ $.ajax({
           //상품평 불러오는작업
           getReviewInfo(url);
     }
-  }
+  },          
+    error : function(xhr, status, error) {
+    alert(status);
+    alert("로그인 페이지로 이동합니다.");
+    location.href="/member/login";
+    }
 });
 
 });

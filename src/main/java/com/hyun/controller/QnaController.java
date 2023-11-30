@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,25 +37,56 @@ public class QnaController {
 	
 	//qna 목록
 	@GetMapping("/list")
-	private String qna_list(Criteria cri, Model model, HttpSession session)throws Exception{
+	private void qna_list(Criteria cri,@ModelAttribute("qa_num")Integer qa_num, Model model, HttpSession session)throws Exception{
+		
+		
+		
 		
 		String mbsp_id = ((MemberVO) session.getAttribute("loginStatus")).getMbsp_id();
 		
+		
 	    cri.setAmount(8);
 	    
-	    List<QnaVO> qna_list = qnaService.qna_list(mbsp_id ,cri);
+	    List<QnaVO> qna_list = qnaService.qna_list(qa_num, cri);
 		model.addAttribute("qna_list", qna_list);
 		
-		int totalcount = qnaService.getTotalCount(cri);
+		int totalcount = qnaService.getTotalCount();
 		model.addAttribute("pageMaker", new PageDTO(cri, totalcount));
 	    
 		
-		return "";
 	}
 	
 	//신규 글 작성 화면 요청
+	@GetMapping("/qna_insert")
+	private void qna_insert() {
+		log.info("qna신규 글작성화면요청");
+	}
 	
+	
+	
+	
+	@PostMapping("/qna_insert")
+	private String qna_insert(QnaVO vo,@ModelAttribute("qa_num")Integer qa_num, HttpSession session)throws Exception{
+		
+		String mbsp_id = ((MemberVO) session.getAttribute("loginStatus")).getMbsp_id();
+		vo.setMbsp_id(mbsp_id);
+		
+		//db저장기능
+		qnaService.qna_insert(vo);
+		
+		return "redirect:/user/qna/list";
+	}
+
 	//신규 글 저장 처리 요청
+	@GetMapping("/qna_detail")
+	public void qna_detail(Criteria cri, @ModelAttribute("qa_num") Integer qa_num, Model model)throws Exception{
+		
+		   log.info("페이징정보 :" + cri);
+		   log.info("qna글번호 :" + qa_num);
+		QnaVO qnaVO = qnaService.qna_detail(qa_num);
+		
+		model.addAttribute("QnaVO", qnaVO);
+	}
 	
 	//QNA 글 상세 화면 요청
 	
@@ -68,5 +100,6 @@ public class QnaController {
 	
 	//신규 답글 저장 처리 요청
 
-
 }
+
+

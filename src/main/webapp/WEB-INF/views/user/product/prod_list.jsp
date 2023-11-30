@@ -203,6 +203,10 @@ $("button[name='btn_cart_add']").on("click", function() {
     type: 'post',
     data: {prod_num : $(this).data("prod_num"), cart_amount : 1 },
     dataType: 'text',
+    //인스펙터에서 ajax구문에 에러를보내는데 받기위한 작업
+    beforeSend: function(xhr) {
+    xhr.setRequestHeader("AJAX" , "true");
+    },
     success: function(result) {
       if(result === "success"){
         alert("장바구니에 추가됨");
@@ -210,6 +214,11 @@ $("button[name='btn_cart_add']").on("click", function() {
           location.href = "/user/Cart/cart_list";
         }
       }
+    },          
+    error : function(xhr, status, error) {
+    alert(status);
+    alert("로그인 페이지로 이동합니다.");
+    location.href="/member/login";
     }
   });
 });

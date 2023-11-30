@@ -142,6 +142,10 @@
         type: 'post',
         data: {cart_code : cart_code, cart_amount : cart_amount},
         dataType: 'Text',
+        //인스펙터에서 ajax구문에 에러를보내는데 받기위한 작업
+        beforeSend: function(xhr) {
+        xhr.setRequestHeader("AJAX" , "true");
+        },
         success: function(result) {
           if(result == 'success') {
             console.log("수량 변경이 성공적으로 반영되었습니다.");
@@ -160,6 +164,11 @@
             //전체주문금액
             fn_cart_sum_price();
           }
+        },
+        error : function(xhr, status, error) {
+        alert(status);
+        alert("로그인 페이지로 이동합니다.");
+        location.href="/member/login";
         }
       });
 

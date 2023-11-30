@@ -7,20 +7,28 @@
    
       	<sql id="criteria">
 	<trim prefix="(" suffix=") AND" prefixOverrides="OR">
-		<foreach collection="typeArr" item="type">
+		<foreach collection="cri.typeArr" item="type">
 			<trim prefix="OR">
 				<choose>
-					<when test="type == 'N'.toString()">
-						ORD_CODE like '%' || #{keyword} || '%'
+					<when test="cri.type == 'C'.toString()">
+						ORD_CODE like '%' || #{cri.keyword} || '%'
 					</when>
 									
-					<when test="type == 'C'.toString()">
-						ORD_NAME like '%' || #{keyword} || '%'
+					<when test="cri.type == 'N'.toString()">
+						ORD_NAME like '%' || #{cri.keyword} || '%'
 					</when>
 				</choose>
 			</trim>
 		</foreach>
 	</trim>
+	</sql>
+	
+	<sql id="period">
+			<if test="start_date != null and !start_date.equals('')">
+			<![CDATA[ 
+				ORD_REGDATE >= to_date(#{start_date}) AND ORD_REGDATE < to_date(#{end_date}) + 1 And
+			 	]]>
+		</if>
 	</sql>
    
 	<select id="order_list" resultType="com.hyun.domain.OrderVO" parameterType="map">
@@ -38,10 +46,11 @@
 		where 
 	]]>
 		<include refid="criteria"></include>
+		<include refid="period"></include>
 		<![CDATA[ 
-		rownum <= #{pageNum} * #{amount}
+		rownum <= #{cri.pageNum} * #{cri.amount}
 	)
-	where rn > (#{pageNum} -1) * #{amount} 
+	where rn > (#{cri.pageNum} -1) * #{cri.amount} 
 	]]>
 	</select>
 	
@@ -52,6 +61,7 @@
 		 	ORDER_TBL
 		WHERE
 		<include refid="criteria"></include>
+		<include refid="period"></include>
 		ORD_CODE > 0
 	</select>
 	
