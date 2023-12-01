@@ -36,21 +36,16 @@ public class QnaController {
 	private final QnaService qnaService;
 	
 	//qna 목록
-	@GetMapping("/list")
-	private void qna_list(Criteria cri,@ModelAttribute("qa_num")Integer qa_num, Model model, HttpSession session)throws Exception{
-		
-		
-		
-		
-		String mbsp_id = ((MemberVO) session.getAttribute("loginStatus")).getMbsp_id();
-		
+	@GetMapping("/qna_list")
+	private void qna_list(Criteria cri, Model model, HttpSession session)throws Exception{
+			
 		
 	    cri.setAmount(8);
 	    
-	    List<QnaVO> qna_list = qnaService.qna_list(qa_num, cri);
+	    List<QnaVO> qna_list = qnaService.qna_list(cri);
 		model.addAttribute("qna_list", qna_list);
 		
-		int totalcount = qnaService.getTotalCount();
+		int totalcount = qnaService.getTotalCount(cri);
 		model.addAttribute("pageMaker", new PageDTO(cri, totalcount));
 	    
 		
@@ -66,7 +61,7 @@ public class QnaController {
 	
 	
 	@PostMapping("/qna_insert")
-	private String qna_insert(QnaVO vo,@ModelAttribute("qa_num")Integer qa_num, HttpSession session)throws Exception{
+	private String qna_insert(QnaVO vo, Integer qa_num, HttpSession session)throws Exception{
 		
 		String mbsp_id = ((MemberVO) session.getAttribute("loginStatus")).getMbsp_id();
 		vo.setMbsp_id(mbsp_id);

@@ -26,11 +26,7 @@ public class QnaServiceImpl implements QnaService {
 
 
 
-	@Override
-	public List<QnaVO> qna_list(Integer qa_num, Criteria cri) {
-		// TODO Auto-generated method stub
-		return qnaMapper.qna_list(qa_num, cri);
-	}
+
 
 
 	@Override
@@ -43,10 +39,32 @@ public class QnaServiceImpl implements QnaService {
 
 
 
+
+
+
 	@Override
-	public int getTotalCount() {
+	public List<QnaVO> qna_list( Criteria cri) {
 		// TODO Auto-generated method stub
-		return qnaMapper.getTotalCount();
+		return qnaMapper.qna_list(cri);
 	}
+
+
+
+
+
+
+
+
+	@Override
+	public int getTotalCount(Criteria cri) {
+		// TODO Auto-generated method stub
+		return qnaMapper.getTotalCount(cri);
+	}
+
+
+
+
+
+
 
 }
