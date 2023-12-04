@@ -96,17 +96,6 @@
   
   <div class="box-footer clearfix">
     <div class="row">
-       <div class="col-md-2">
-          <button type="button" class="btn btn-primary" id="btn_check_modify1" role="button">체크상품수정</button>   
-       <!--1)페이지번호 클릭할 때 사용  [이전]  1   2   3   4   5 [다음]  -->
-       <!--2)목록에서 상품이미지 또는 상품명 클릭할 때 사용   -->
-         <form id="actionForm" action="" method="get">
-          <input type="hidden" name="pageNum" id="pageNum" value="${pageMaker.cri.pageNum}" />
-          <input type="hidden" name="amount"  id="amount" value="${pageMaker.cri.amount}" />
-          <input type="hidden" name="type" id="type" value="${pageMaker.cri.type}" />
-          <input type="hidden" name="keyword" id="keyword" value="${pageMaker.cri.keyword}" />
-         </form>
-       </div>
        <div class="col-md-8 text-center">
           <nav aria-label="...">
           <ul class="pagination">
@@ -135,8 +124,6 @@
           </ul>
           </nav>
        </div>
-       <div class="col-md-2 text-right"><button type="button" class="btn btn-primary" id="btn_prod_insert"  role="button">상품등록</button></div>
-    </div>
     
  </div>
 <div class="col-6">
@@ -150,7 +137,6 @@
   </form>
 </div>
 </div>
-<a class="btn btn-primary" href="" role="button">글쓰기</a>
 
  </div>												
 </div>
@@ -173,7 +159,7 @@
 $(".movepage").on("click", function(e) {
    e.preventDefault(); //a태그의 링크기능을 제거. href속성에 페이지번호를 숨겨둠
 
-   actionForm.attr("action", "/admin/product/prod_list");
+   actionForm.attr("action", "/user/qna/qna_list");
    actionForm.find("input[name='pageNum']").val($(this).attr("href"));
 
 
