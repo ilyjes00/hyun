@@ -76,7 +76,6 @@
 			<mapping path="/member/delConfirmPw"/>
 			<mapping path="/member/mypage"/>
 			<!-- Order -->
-			<mapping path="/user/order/*"/>
 			<!-- Cart -->
 			<mapping path="/user/Cart/*"/>
 			<mapping path="/user/Cart/**"/>

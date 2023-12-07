@@ -69,6 +69,8 @@ public class ReviewController {
 		//2)db연동작업
 		List<ReviewVO> list = reviewService.list(prod_num, cri);
 		
+		log.info(list);
+		
 		//3)페이징페이지
 		int listCount = reviewService.listCount(prod_num);
 		PageDTO pageMaker = new PageDTO(cri, listCount);

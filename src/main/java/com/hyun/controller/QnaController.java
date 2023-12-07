@@ -1,28 +1,26 @@
 package com.hyun.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hyun.domain.MemberVO;
 import com.hyun.domain.QnaVO;
 import com.hyun.domain.ReviewVO;
-import com.hyun.dto.CartDTOList;
 import com.hyun.dto.Criteria;
 import com.hyun.dto.PageDTO;
-import com.hyun.mapper.QnaMapper;
 import com.hyun.service.QnaService;
 
 import lombok.RequiredArgsConstructor;
@@ -33,23 +31,33 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("user/qna/*")
 @Controller
 public class QnaController {
+	@Autowired
 	private final QnaService qnaService;
 	
-	//qna 목록
-	@GetMapping("/qna_list")
-	private void qna_list(Criteria cri, Model model, HttpSession session)throws Exception{
+	   //상품리스트	(목록과페이징)
+	   @GetMapping("/qna_list")
+	   public void qna_list(Model model, @RequestParam(defaultValue = "1") @PathVariable("page")int page) throws Exception {
+		   
+		   
+		   //10 -> 2
+			Criteria cri = new Criteria();
+			cri.setAmount(2); //페이지수
+			cri.setPageNum(page);
 			
-		
-	    cri.setAmount(8);
-	    
-	    List<QnaVO> qna_list = qnaService.qna_list(cri);
-		model.addAttribute("qna_list", qna_list);
-		
-		int totalcount = qnaService.getTotalCount(cri);
-		model.addAttribute("pageMaker", new PageDTO(cri, totalcount));
-	    
-		
-	}
+			List<QnaVO> qna_list = qnaService.qna_list(cri);
+			
+
+			model.addAttribute("qna_list", qna_list);
+			log.info(qna_list);
+			
+			
+			int totalcount = qnaService.getTotalCount(cri);
+			model.addAttribute("pageMaker", new PageDTO(cri, totalcount));
+	   
+	   }
+			
+	
+
 	
 	//신규 글 작성 화면 요청
 	@GetMapping("/qna_insert")

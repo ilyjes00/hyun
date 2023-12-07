@@ -4,59 +4,40 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
   <mapper namespace="com.hyun.mapper.QnaMapper">
-  
-     <insert id="qna_insert" parameterType="com.hyun.domain.QnaVO">
-   
-   INSERT 
-   		INTO QA_TBL(qa_num, mbsp_id, qa_title, qa_content, qa_regdate)
-	VALUES
-		(seq_qa_tbl.NEXTVAL, #{mbsp_id}, #{qa_title}, #{qa_content} , #{qa_regdate})
-   </insert>
-   
-   <sql id="criteria">
-	<trim prefix="(" suffix=") AND" prefixOverrides="OR">
-		<foreach collection="typeArr" item="type">
-			<trim prefix="OR">
-				<choose>
-					<when test="type == 'N'.toString()">
-						QA_NUM like '%' || #{keyword} || '%'
-					</when>
-									
-					<when test="type == 'C'.toString()">
-						MBSP_ID like '%' || #{keyword} || '%'
-					</when>
-					
-				</choose>
-			</trim>
-		</foreach>
-	</trim>
-	</sql>
-   
-	<select id="qna_list" resultType="com.hyun.domain.QnaVO" parameterType="com.hyun.dto.Criteria">
+
+	
+	
+	<select id="qna_list" resultType="com.hyun.domain.QnaVO" parameterType="map">
 	<![CDATA[ 
 	select 
-		   qa_num, mbsp_id, qa_title, qa_regdate
+		qa_num, mbsp_id, qa_content, qa_title, qa_regdate
 	from 
 	(
-		select /*+INDEX_DESC(QA_TBL pk_qa_tbl) */
-			rownum rn, qa_num, mbsp_id, qa_title, qa_regdate
+		select /*+INDEX_DESC(QA_TBL pk_qa_num) */
+			rownum rn, qa_num, mbsp_id, qa_content, qa_title, qa_regdate
 		from 
 			QA_TBL 
-		where 
-		]]>
-		
-		<include refid="criteria"></include>
-		<![CDATA[ 
-		rownum <= #{pageNum} * #{amount}
-	)
-	where rn > (#{pageNum} -1) * #{amount} 
-	]]>
+  		WHERE
+            rownum <= #{pageNum} * #{amount}
+    )
+    	WHERE 
+        rn > (#{pageNum} - 1) * #{amount}
+    ]]>
 	</select>
 	
-		<select id="getTotalCount" resultType ="int">
-		SELECT COUNT(*) FROM QA_TBL WHERE
-		<include refid="criteria"></include>
-		QA_NUM > 0
+	<select id="getTotalCount" resultType ="int">
+			SELECT COUNT(*) FROM QA_TBL
+			    <where>
+    </where>
 	</select>
+	
+	  	<insert id="qna_insert" parameterType="com.hyun.domain.QnaVO">
+  		
+  		INSERT INTO 
+  			QA_TBL(qa_num, mbsp_id, qa_content, qa_title, qa_regdate)
+  		VALUES
+  			(#{qa_num}, #{mbsp_id}, #{qa_content}, #{qa_title}, #{qa_regdate})
+  			
+  	</insert>
 
   </mapper>

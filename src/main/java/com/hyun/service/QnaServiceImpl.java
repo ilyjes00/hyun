@@ -43,7 +43,7 @@ public class QnaServiceImpl implements QnaService {
 
 
 	@Override
-	public List<QnaVO> qna_list( Criteria cri) {
+	public List<QnaVO> qna_list(Criteria cri) {
 		// TODO Auto-generated method stub
 		return qnaMapper.qna_list(cri);
 	}
