@@ -140,12 +140,15 @@ public class AdvertProductController {
 		   
 			List<ProductVO> prod_list = advertProductService.prod_list(cri);
 			
+			
 			//날짜폴더의 역슬래시를 슬래시로 바꾸는 작업, 역슬래시로 되어있는 정보가 스프링으로 보내는 요청데이터에 사용되면 에러발생.
 			prod_list.forEach(vo -> {
 				vo.setProd_up_folder(vo.getProd_up_folder().replace("\\", "/"));
 			});
 			
 			model.addAttribute("prod_list", prod_list);
+			log.info(cri);
+			log.info(prod_list);
 			
 			int totalcount = advertProductService.getTotalCount(cri);
 			model.addAttribute("pageMaker", new PageDTO(cri, totalcount));

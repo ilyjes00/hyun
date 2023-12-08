@@ -62,22 +62,22 @@
       <div class="form-group row">
         <label for="mbsp_id" class="col-2">글작성자</label>
         <div class="col-8">
-          <input type="text" class="form-control" name="mbsp_id" id="mbsp_id" value="${loginStatus.mbsp_id}">
+          <input type="text" class="form-control" name="qa_writer" id="qa_writer" value="${loginStatus.mbsp_id}">
         </div>
-
-      <div class="form-group row">
-        <label for="mbsp_phone" class="col-2">글내용</label>
-        <div class="col-10">
-          <input type="text" class="form-control" name="qa_content" id="qa_content" placeholder="글내용입력...">
-        </div>
-      </div>
+        <div><br></div>
+          <div class="col-8">
+          <input type="text" class="form-control" name="qa_title" id="qa_title" value="제목..">
+          </div>
+          <div class="col-8">
+            <input type="text" class="form-control" name="qa_content" id="qa_content" value="글내용..">
+            </div>
       </fieldset>
+      
       
 
       
       <div class="form-group row text-center">
         <div class="col-12">
-          <input type="hidden" name="qa_num" value="${qna_list.qa_num }" />
           <button type="submit" class="btn btn-primary" >글등록</button>
         </div>
       </div>

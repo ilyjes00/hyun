@@ -4,40 +4,79 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
   <mapper namespace="com.hyun.mapper.QnaMapper">
-
+      	<sql id="criteria">
+	<trim prefix="(" suffix=") AND" prefixOverrides="OR">
+		<foreach collection="typeArr" item="type">
+			<trim prefix="OR">
+				<choose>
+					<when test="cri.type == 'C'.toString()">
+						QA_TITLE like '%' || #{keyword} || '%'
+					</when>
+									
+					<when test="cri.type == 'N'.toString()">
+						QA_CONTENT like '%' || #{keyword} || '%'
+					</when>
+					
+					<when test="cri.type == 'T'.toString()">
+						QA_WRITER like '%' || #{keyword} || '%'
+					</when>
+				</choose>
+			</trim>
+		</foreach>
+	</trim>
+	</sql>
 	
 	
-	<select id="qna_list" resultType="com.hyun.domain.QnaVO" parameterType="map">
+	<select id="qna_listWithPaging" resultType="com.hyun.domain.QnaVO" parameterType="com.hyun.dto.Criteria">
 	<![CDATA[ 
 	select 
-		qa_num, mbsp_id, qa_content, qa_title, qa_regdate
+		QA_NUM, QA_WRITER, QA_CONTENT, QA_TITLE, QA_REGDATE, QA_UPDATEDATE
 	from 
 	(
-		select /*+INDEX_DESC(QA_TBL pk_qa_num) */
-			rownum rn, qa_num, mbsp_id, qa_content, qa_title, qa_regdate
+		select /*+INDEX_DESC(QA_TBL PK_QA_NUM) */
+			rownum rn, QA_NUM, QA_WRITER, QA_CONTENT, QA_TITLE, QA_REGDATE, QA_UPDATEDATE
 		from 
 			QA_TBL 
-  		WHERE
-            rownum <= #{pageNum} * #{amount}
-    )
-    	WHERE 
-        rn > (#{pageNum} - 1) * #{amount}
-    ]]>
+		where 
+		]]>
+		
+		<include refid="criteria"></include>
+		<![CDATA[ 
+		rownum <= #{pageNum} * #{amount}
+	)
+	where rn > (#{pageNum} -1) * #{amount} 
+	]]>
 	</select>
 	
-	<select id="getTotalCount" resultType ="int">
-			SELECT COUNT(*) FROM QA_TBL
-			    <where>
-    </where>
+		<select id="getTotalCount" resultType ="int">
+		SELECT COUNT(*) FROM QA_TBL WHERE
+		
+		<include refid="criteria"></include>
+		QA_NUM > 0
 	</select>
 	
-	  	<insert id="qna_insert" parameterType="com.hyun.domain.QnaVO">
-  		
-  		INSERT INTO 
-  			QA_TBL(qa_num, mbsp_id, qa_content, qa_title, qa_regdate)
-  		VALUES
-  			(#{qa_num}, #{mbsp_id}, #{qa_content}, #{qa_title}, #{qa_regdate})
-  			
-  	</insert>
+	   <insert id="qna_insert" parameterType="com.hyun.domain.QnaVO">
+   
+   INSERT 
+   		INTO QA_TBL(qa_num, qa_writer, qa_content, qa_title)
+	VALUES
+		(seq_review_tbl.NEXTVAL, #{qa_writer}, #{qa_content}, #{qa_title})
+		
+   </insert>
+   
+	
+	
+	
+	
+	
+	
+	<select id="get" resultType="com.hyun.domain.QnaVO" parameterType="long">
+	SELECT qa_num, qa_writer, qa_content, qa_title, qa_regdate, qa_updatedate
+	from 
+		qa_tbl 
+	where 
+		qa_num = #{qa_num}
+	</select>
+	
 
   </mapper>

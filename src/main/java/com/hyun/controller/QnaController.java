@@ -1,8 +1,6 @@
 package com.hyun.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,14 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.hyun.domain.MemberVO;
 import com.hyun.domain.QnaVO;
-import com.hyun.domain.ReviewVO;
 import com.hyun.dto.Criteria;
 import com.hyun.dto.PageDTO;
 import com.hyun.service.QnaService;
@@ -31,29 +27,34 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("user/qna/*")
 @Controller
 public class QnaController {
-	@Autowired
 	private final QnaService qnaService;
 	
 	   //상품리스트	(목록과페이징)
 	   @GetMapping("/qna_list")
-	   public void qna_list(Model model, @RequestParam(defaultValue = "1") @PathVariable("page")int page) throws Exception {
+	   public void qna_list(Criteria cri, Model model ) throws Exception {
 		   
+		   	cri.setAmount(2);
 		   
-		   //10 -> 2
-			Criteria cri = new Criteria();
-			cri.setAmount(2); //페이지수
-			cri.setPageNum(page);
+		   	log.info("list: " + cri);
 			
-			List<QnaVO> qna_list = qnaService.qna_list(cri);
+			List<QnaVO> qnalist = qnaService.qna_listWithPaging(cri);
+			model.addAttribute("qnalist", qnalist);
+			
+			
+			
 			
 
-			model.addAttribute("qna_list", qna_list);
-			log.info(qna_list);
-			
-			
 			int totalcount = qnaService.getTotalCount(cri);
 			model.addAttribute("pageMaker", new PageDTO(cri, totalcount));
 	   
+	   }
+	   @GetMapping("/get")
+	   public void get(Long qa_num, @ModelAttribute("cri") Criteria cri, Model model) {
+		   log.info("게시물번호: " + qa_num);
+		   
+		   
+		   QnaVO board = qnaService.get(qa_num);
+		   model.addAttribute("board", board);
 	   }
 			
 	
@@ -69,15 +70,14 @@ public class QnaController {
 	
 	
 	@PostMapping("/qna_insert")
-	private String qna_insert(QnaVO vo, Integer qa_num, HttpSession session)throws Exception{
-		
-		String mbsp_id = ((MemberVO) session.getAttribute("loginStatus")).getMbsp_id();
-		vo.setMbsp_id(mbsp_id);
-		
+	private String qna_insert(QnaVO vo, HttpSession session, RedirectAttributes rttr)throws Exception{
+			
 		//db저장기능
 		qnaService.qna_insert(vo);
 		
-		return "redirect:/user/qna/list";
+		rttr.addFlashAttribute("msg", "qna_insert");
+		
+		return "redirect:/user/qna/qna_list";
 	}
 
 	//신규 글 저장 처리 요청

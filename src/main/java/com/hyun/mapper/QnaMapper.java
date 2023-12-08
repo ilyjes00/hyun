@@ -11,7 +11,11 @@ public interface QnaMapper {
 	
 	void qna_insert(QnaVO vo);
 	
-	List<QnaVO> qna_list(Criteria cri);
+	List<QnaVO> qna_list();
+	
+	List<QnaVO> qna_listWithPaging(Criteria cri);
+	
+	QnaVO get(Long qa_num);
 	
 	int getTotalCount(Criteria cri);
 	
