@@ -132,8 +132,13 @@ p#star_rv_score a.rv_score.on {
                         <c:forEach items="${qnalist}" var="QnaVO">
                           <tr>
                               <td>${QnaVO.qa_num}</td>
+                              <td class="left">
+                                <c:forEach var="i" begin="1" end="${QnaVO.indent }">
+                                  ${i eq QnaVO.indent ? "<img src='img/re.gif' /> 댓글" : "&nbsp;&nbsp;답글" }
+                                </c:forEach>
+                                <a href="/user/qna/qna_detail?qa_num=${QnaVO.qa_num }" >${QnaVO.qa_title }</a>
+                              </td>
                               <td>${QnaVO.qa_writer}</td>
-                              <td>${QnaVO.qa_title}</td>
                               <td>${QnaVO.qa_content}</td>
                               <td>${QnaVO.qa_regdate}</td>
                               <td>${QnaVO.qa_updatedate}</td>

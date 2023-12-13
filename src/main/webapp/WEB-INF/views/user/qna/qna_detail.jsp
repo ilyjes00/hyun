@@ -52,41 +52,43 @@
 <%@include file="/WEB-INF/views/comm/header.jsp" %>
 
 
-<form role="form" method="post" action="/user/qna/qna_insert" enctype="multipart/form-data">
-<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto">
+<tr class="">
+  <td colspan="9">
+    <table class="table table-sm" id="">
+      <thead>
+        <tr>
+          <th scope="col">주문번호</th>
+          <th scope="col">상품코드</th>
+          <th scope="col">상품이미지</th>
+          <th scope="col">상품명</th>
+          <th scope="col">주문수량</th>
+          <th scope="col">주문금액</th>
+        </tr>
+      </thead>
+      <tbody>
+        <c:forEach items="${qna_DetailList }" var="qna_DetailList">
+        <tr>
+          <th scope="row">${qna_DetailList.qa_num }</th>
+          <td>${qna_DetailList.qa_content }</td>
+          <td>${qna_DetailList.qa_writer }</td>
+          <td>${qna_DetailList.qa_content }</td>
+          <td>${qna_DetailList.qa_regdate }</td>
+          <td>${qna_DetailList.qa_updatedate }</td>
+        </tr>
+        </c:forEach>
+      </tbody>
+    </table>
+  </td>
+</tr>
 
+<div class="btnSet">
+	<a class="btn-fill" href="list.qna">목록으로</a>
 
-
-    <article>
-      <div class="container" role="main">
-        <h2>게시물 작성</h2>
-        <form name="form" id="form" role="form" method="post" action="/user/qna/qna_insert">
-          <div class="mb-3"> <label for="title">제목</label>
-             <input type="text" class="form-control" name="qa_title" id="qa_title" placeholder="제목을 입력해 주세요"> 
-          </div>
-
-          <div class="mb-3"> <label for="qa_writer">작성자</label> 
-            <input type="text" class="form-control" name="qa_writer" id="qa_writer" value="${loginStatus.mbsp_id}">
-          </div>
-
-          <div class="mb-3"> <label for="qa_content">내용</label> 
-            <textarea class="form-control" rows="5"name="qa_content" id="qa_content" placeholder="내용을 입력해 주세요"></textarea> 
-            </div>
-        </form>
-    </article>
-  </body>
-
-</html>
-
-      
-      <div class="form-group row text-center">
-        <div class="col-12">
-          <button type="submit" class="btn btn-primary" >글등록</button>
-        </div>
-      </div>
-      </form>
-      </div>
-    </form>
+	<!-- 로그인이 된 경우 답글 쓰기 가능 -->
+	<core:if test="${!empty login_info }">
+		<a class="btn-fill" href="reply.qna?id=${vo.id }">답글 쓰기</a>
+	</core:if>
+</div>
 
 <%@include file="/WEB-INF/views/comm/footer.jsp" %>
 </div>

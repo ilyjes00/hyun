@@ -30,17 +30,6 @@ public class QnaServiceImpl implements QnaService {
 
 
 	@Override
-	public QnaVO qna_detail(Integer qa_num) {
-		// TODO Auto-generated method stub
-		return qnaMapper.qna_detail(qa_num);
-	}
-
-
-
-
-
-
-	@Override
 	public int getTotalCount(Criteria cri) {
 		// TODO Auto-generated method stub
 		return qnaMapper.getTotalCount(cri);
@@ -83,6 +72,32 @@ public class QnaServiceImpl implements QnaService {
 	public QnaVO get(Long qa_num) {
 		// TODO Auto-generated method stub
 		return qnaMapper.get(qa_num);
+	}
+
+
+
+
+
+
+
+
+	@Override
+	public List<QnaVO> qna_detail(Long qa_num) {
+		// TODO Auto-generated method stub
+		return qnaMapper.qna_detail(qa_num);
+	}
+
+
+
+
+
+
+
+
+	@Override
+	public void qna_reply(QnaVO vo) {
+		// TODO Auto-generated method stub
+		qnaMapper.qna_reply(vo);
 	}
 
 

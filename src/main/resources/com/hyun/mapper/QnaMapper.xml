@@ -27,26 +27,31 @@
 	</sql>
 	
 	
-	<select id="qna_listWithPaging" resultType="com.hyun.domain.QnaVO" parameterType="com.hyun.dto.Criteria">
-	<![CDATA[ 
-	select 
-		QA_NUM, QA_WRITER, QA_CONTENT, QA_TITLE, QA_REGDATE, QA_UPDATEDATE
-	from 
-	(
-		select /*+INDEX_DESC(QA_TBL PK_QA_NUM) */
-			rownum rn, QA_NUM, QA_WRITER, QA_CONTENT, QA_TITLE, QA_REGDATE, QA_UPDATEDATE
-		from 
-			QA_TBL 
-		where 
-		]]>
-		
-		<include refid="criteria"></include>
-		<![CDATA[ 
-		rownum <= #{pageNum} * #{amount}
-	)
-	where rn > (#{pageNum} -1) * #{amount} 
-	]]>
-	</select>
+<select id="qna_listWithPaging" resultType="com.hyun.domain.QnaVO" parameterType="com.hyun.dto.Criteria">
+    <![CDATA[
+    SELECT 
+    		QA_NUM, ROOT, QA_WRITER, QA_CONTENT, QA_TITLE, QA_REGDATE, QA_UPDATEDATE, STEP, INDENT
+    FROM 
+    (
+        SELECT /*+INDEX_DESC(QA_TBL PK_QA_NUM) */
+            rownum rn, QA_NUM, ROOT, QA_WRITER, QA_CONTENT, QA_TITLE, QA_REGDATE, QA_UPDATEDATE, STEP, INDENT
+        FROM 
+        	QA_TBL
+        START WITH 
+        	QA_NUM 
+        IN (SELECT DISTINCT ROOT FROM QA_TBL WHERE ROOT IS NOT NULL)
+        CONNECT BY NOCYCLE PRIOR QA_NUM = ROOT
+        ORDER SIBLINGS BY STEP ASC
+    )
+    WHERE rn <= #{pageNum} * #{amount}
+    AND rn > (#{pageNum} - 1) * #{amount}
+    ]]>
+</select>
+
+
+
+
+
 	
 		<select id="getTotalCount" resultType ="int">
 		SELECT COUNT(*) FROM QA_TBL WHERE
@@ -58,11 +63,40 @@
 	   <insert id="qna_insert" parameterType="com.hyun.domain.QnaVO">
    
    INSERT 
-   		INTO QA_TBL(qa_num, qa_writer, qa_content, qa_title)
+   		INTO QA_TBL(qa_num, root, qa_writer, qa_content, qa_title)
 	VALUES
-		(seq_review_tbl.NEXTVAL, #{qa_writer}, #{qa_content}, #{qa_title})
+		(seq_qa_num.NEXTVAL, seq_qa_num.CURRVAL, #{qa_writer}, #{qa_content}, #{qa_title})
 		
    </insert>
+   
+   	   <select id="qna_detail" parameterType="Long" resultType="com.hyun.domain.QnaVO">
+   
+   SELECT 
+   		qa_num, root, qa_writer, qa_content, qa_title, qa_regdate, qa_updatedate , step, indent
+	FROM
+		QA_TBL
+	WHERE
+		QA_NUM = #{qa_num}
+		
+   </select>
+   
+
+<insert id="qna_reply" statementType="CALLABLE">
+    <![CDATA[
+        BEGIN
+            UPDATE qa_tbl 
+            SET step = step + 1
+            WHERE root = #{root} AND step > #{step};
+            
+            INSERT INTO QA_TBL (qa_num, root, qa_writer, qa_content, qa_title, step, indent)
+            VALUES (seq_qa_num.NEXTVAL, #{root}, #{qa_writer}, #{qa_content}, #{qa_title}, #{step} + 1, #{indent} + 1);
+        END;
+    ]]>
+</insert>
+
+
+
+   
    
 	
 	

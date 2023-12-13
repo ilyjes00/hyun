@@ -52,15 +52,22 @@
 <%@include file="/WEB-INF/views/comm/header.jsp" %>
 
 
-<form role="form" method="post" action="/user/qna/qna_insert" enctype="multipart/form-data">
+<form role="form" method="post" action="/user/qna/qna_reply" enctype="multipart/form-data">
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto">
+  <c:forEach items="${qna_DetailList }" var="vo">
+    <input type="hidden" name="root" id="root" value="${vo.root }" />
+    <input type="hidden" name="step" id="step" value="${vo.step }" />
+    <input type="hidden" name="indent" id="indent" value="${vo.indent }" />
+    </c:forEach>
+
 
 
 
     <article>
       <div class="container" role="main">
         <h2>게시물 작성</h2>
-        <form name="form" id="form" role="form" method="post" action="/user/qna/qna_insert">
+
+
           <div class="mb-3"> <label for="title">제목</label>
              <input type="text" class="form-control" name="qa_title" id="qa_title" placeholder="제목을 입력해 주세요"> 
           </div>
@@ -87,18 +94,19 @@
       </form>
       </div>
     </form>
+  
 
 <%@include file="/WEB-INF/views/comm/footer.jsp" %>
 </div>
 
 <%@include file="/WEB-INF/views/comm/plugin.jsp" %>
-<script src="/js/category_menu.js"></script>
 
   <script>
 
 </script>
   <!-- 카테고리 메뉴 자바스크립트 작업소스 -->
   <script src="/js/category_menu.js"></script>
+  <script type="text/javascript" src="js/need_check.js?v=<%=new java.util.Date().getTime() %>"></script>
   
   <script>
 

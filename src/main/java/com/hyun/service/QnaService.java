@@ -17,6 +17,10 @@ public interface QnaService {
 	
 	int getTotalCount(Criteria cri);
 	
-	QnaVO qna_detail(Integer qa_num);
+	List<QnaVO> qna_detail(Long qa_num);
+	
+	void qna_reply(QnaVO vo);
+	
+	
 
 }

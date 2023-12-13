@@ -5,10 +5,12 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -33,12 +35,15 @@ public class QnaController {
 	   @GetMapping("/qna_list")
 	   public void qna_list(Criteria cri, Model model ) throws Exception {
 		   
-		   	cri.setAmount(2);
+		   	cri.setAmount(10);
 		   
 		   	log.info("list: " + cri);
+		   
 			
 			List<QnaVO> qnalist = qnaService.qna_listWithPaging(cri);
 			model.addAttribute("qnalist", qnalist);
+			
+			log.info(qnalist);
 			
 			
 			
@@ -80,26 +85,54 @@ public class QnaController {
 		return "redirect:/user/qna/qna_list";
 	}
 
-	//신규 글 저장 처리 요청
+	
+	
+	//QNA 글 상세 화면 요청 //  http://localhost:9090/user/qna/qna_detail?qa_num=1
 	@GetMapping("/qna_detail")
-	public void qna_detail(Criteria cri, @ModelAttribute("qa_num") Integer qa_num, Model model)throws Exception{
+	public void qna_detail(Long qa_num, Model model) throws Exception{
 		
-		   log.info("페이징정보 :" + cri);
+		List<QnaVO> qna_DetailList = qnaService.qna_detail(qa_num);
+		
+		
 		   log.info("qna글번호 :" + qa_num);
-		QnaVO qnaVO = qnaService.qna_detail(qa_num);
 		
-		model.addAttribute("QnaVO", qnaVO);
+		model.addAttribute("qna_DetailList", qna_DetailList);
+		
+		   log.info(qna_DetailList);
+		
 	}
 	
-	//QNA 글 상세 화면 요청
+	
 	
 	//QNA 글 삭제 처리 요청
 	
-	//QNA 글 수정 화면 요청
+	//QNA 글 수정 화면 요청 어드민쪽에서 해결할예정
 	
 	//QNA 글 수정 처리 요청
 	
 	//답글 쓰기 화면 요청
+	@GetMapping("/qna_reply")
+	private String qna_reply(Model model , Long qa_num) {
+		List<QnaVO> qna_DetailList = qnaService.qna_detail(qa_num);
+		
+		
+
+		
+		model.addAttribute("qna_DetailList", qna_DetailList);
+		
+		   log.info(qna_DetailList);
+		return "user/qna/qna_reply";
+	}
+	
+	@PostMapping("/qna_reply")
+	private String qna_reply(QnaVO vo, HttpSession session)throws Exception{
+			
+		//db저장기능
+		qnaService.qna_reply(vo);
+		
+		return "redirect:/user/qna/qna_list";
+	}
+	
 	
 	//신규 답글 저장 처리 요청
 
