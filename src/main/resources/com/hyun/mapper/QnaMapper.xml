@@ -49,9 +49,6 @@
 </select>
 
 
-
-
-
 	
 		<select id="getTotalCount" resultType ="int">
 		SELECT COUNT(*) FROM QA_TBL WHERE
@@ -96,21 +93,9 @@
 
 
 
-   
-   
 	
 	
-	
-	
-	
-	
-	<select id="get" resultType="com.hyun.domain.QnaVO" parameterType="long">
-	SELECT qa_num, qa_writer, qa_content, qa_title, qa_regdate, qa_updatedate
-	from 
-		qa_tbl 
-	where 
-		qa_num = #{qa_num}
-	</select>
+
 	
 
   </mapper>

@@ -53,18 +53,7 @@ public class QnaController {
 			model.addAttribute("pageMaker", new PageDTO(cri, totalcount));
 	   
 	   }
-	   @GetMapping("/get")
-	   public void get(Long qa_num, @ModelAttribute("cri") Criteria cri, Model model) {
-		   log.info("게시물번호: " + qa_num);
-		   
-		   
-		   QnaVO board = qnaService.get(qa_num);
-		   model.addAttribute("board", board);
-	   }
-			
-	
 
-	
 	//신규 글 작성 화면 요청
 	@GetMapping("/qna_insert")
 	private void qna_insert() {
@@ -102,14 +91,6 @@ public class QnaController {
 		
 	}
 	
-	
-	
-	//QNA 글 삭제 처리 요청
-	
-	//QNA 글 수정 화면 요청 어드민쪽에서 해결할예정
-	
-	//QNA 글 수정 처리 요청
-	
 	//답글 쓰기 화면 요청
 	@GetMapping("/qna_reply")
 	private String qna_reply(Model model , Long qa_num) {
@@ -134,7 +115,12 @@ public class QnaController {
 	}
 	
 	
-	//신규 답글 저장 처리 요청
+	//QNA 글 삭제 처리 요청어드민쪽에서 해결할예정
+	
+	//QNA 글 수정 화면 요청 어드민쪽에서 해결할예정
+	
+	//QNA 글 수정 처리 요청
+	
 
 }
 

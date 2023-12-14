@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
-  <mapper namespace="com.hyun.mapper.QnaMapper">
+  <mapper namespace="com.hyun.mapper.AdQnaMapper">
       	<sql id="criteria">
 	<trim prefix="(" suffix=") AND" prefixOverrides="OR">
 		<foreach collection="typeArr" item="type">
@@ -27,7 +27,7 @@
 	</sql>
 	
 	
-<select id="qna_listWithPaging" resultType="com.hyun.domain.QnaVO" parameterType="com.hyun.dto.Criteria">
+<select id="Adqna_listWithPaging" resultType="com.hyun.domain.QnaVO" parameterType="com.hyun.dto.Criteria">
     <![CDATA[
     SELECT 
     		QA_NUM, ROOT, QA_WRITER, QA_CONTENT, QA_TITLE, QA_REGDATE, QA_UPDATEDATE, STEP, INDENT
@@ -56,17 +56,9 @@
 		<include refid="criteria"></include>
 		QA_NUM > 0
 	</select>
-	
-	   <insert id="qna_insert" parameterType="com.hyun.domain.QnaVO">
+
    
-   INSERT 
-   		INTO QA_TBL(qa_num, root, qa_writer, qa_content, qa_title)
-	VALUES
-		(seq_qa_num.NEXTVAL, seq_qa_num.CURRVAL, #{qa_writer}, #{qa_content}, #{qa_title})
-		
-   </insert>
-   
-   	   <select id="qna_detail" parameterType="Long" resultType="com.hyun.domain.QnaVO">
+   	   <select id="Adqna_detail" parameterType="Long" resultType="com.hyun.domain.QnaVO">
    
    SELECT 
    		qa_num, root, qa_writer, qa_content, qa_title, qa_regdate, qa_updatedate , step, indent
@@ -78,7 +70,7 @@
    </select>
    
 
-<insert id="qna_reply" statementType="CALLABLE">
+<insert id="Adqna_reply" statementType="CALLABLE">
     <![CDATA[
         BEGIN
             UPDATE qa_tbl 
@@ -90,6 +82,24 @@
         END;
     ]]>
 </insert>
+
+
+<update id="Adqna_modify" parameterType="map">
+UPDATE 
+	QA_TBL 
+SET 
+	qa_writer = #{qa_writer }, qa_content = #{qa_content }, qa_title = #{qa_title }, qa_updatedate = #{qa_updatedate }
+WHERE 
+	QA_NUM = #{qa_num }
+</update>
+
+
+<delete id="Adqna_delete" parameterType="Long">
+  	DELETE FROM 
+  		QA_TBL
+  	WHERE
+  		QA_NUM = #{qa_num}
+</delete>
 
 
 

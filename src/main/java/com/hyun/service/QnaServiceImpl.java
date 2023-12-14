@@ -68,11 +68,6 @@ public class QnaServiceImpl implements QnaService {
 
 
 
-	@Override
-	public QnaVO get(Long qa_num) {
-		// TODO Auto-generated method stub
-		return qnaMapper.get(qa_num);
-	}
 
 
 

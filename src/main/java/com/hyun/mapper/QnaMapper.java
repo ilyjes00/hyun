@@ -15,7 +15,6 @@ public interface QnaMapper {
 	
 	List<QnaVO> qna_listWithPaging(Criteria cri);
 	
-	QnaVO get(Long qa_num);
 	
 	int getTotalCount(Criteria cri);
 	
