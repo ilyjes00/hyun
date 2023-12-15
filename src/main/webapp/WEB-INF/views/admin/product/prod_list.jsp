@@ -373,7 +373,7 @@ $("#btn_check_modify1").on("click", function(){
     console.log(prod_num);
 
     //<input type="hidden" name="prod_num" id="prod_num" value="24"/>
-    actionForm.find("input[name='pro_num']").remove();
+    actionForm.find("input[name='prod_num']").remove();
 
     actionForm.append('<input type="hidden" name="prod_num" id="prod_num" value="' + prod_num + '" />');
 

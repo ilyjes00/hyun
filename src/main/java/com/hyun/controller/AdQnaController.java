@@ -97,18 +97,19 @@ public class AdQnaController {
 			
 			model.addAttribute("vo" ,adQnaService.Adqna_detail(qa_num));
 			
-			return "";
+			return "admin/qna/qna_modify";
 		}
 		
 		@PostMapping("/qna_modify")
 		private String qna_modify(QnaVO vo)throws Exception{
 			
 			adQnaService.Adqna_modify(vo);
-			return "";
+			
+			return "redirect:/admin/qna/qna_list";
 		}
 		
 		//QNA 글 삭제 처리 요청어드민쪽에서 해결할예정
-		@PostMapping("/qna_delete")
+		@GetMapping("/qna_delete")
 		private String qna_delete(Criteria cri, Long qa_num) {
 			
 			adQnaService.Adqna_delete(qa_num);
