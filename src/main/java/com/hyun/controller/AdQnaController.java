@@ -110,7 +110,7 @@ public class AdQnaController {
 		
 		//QNA 글 삭제 처리 요청어드민쪽에서 해결할예정
 		@GetMapping("/qna_delete")
-		private String qna_delete(Criteria cri, Long qa_num) {
+		private String qna_delete(Criteria cri, Long qa_num)throws Exception {
 			
 			adQnaService.Adqna_delete(qa_num);
 			

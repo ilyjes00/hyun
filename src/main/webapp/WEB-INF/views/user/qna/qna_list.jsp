@@ -142,6 +142,7 @@ p#star_rv_score a.rv_score.on {
                               <td>${QnaVO.qa_content}</td>
                               <td>${QnaVO.qa_regdate}</td>
                               <td>${QnaVO.qa_updatedate}</td>
+                              
                               <!-- 필요한 속성 추가 -->
                           </tr>
                       </c:forEach>

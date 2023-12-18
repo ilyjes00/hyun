@@ -212,6 +212,8 @@ public class MemberController {
 	       
 	       vo.setMbsp_id(mbsp_id);
 	       
+	       vo.setMbsp_password(passwordEncoder.encode(vo.getMbsp_password()));
+	       
 	       memberService.modify(vo);
 	       
 	       //header.jsp에서 전자우편이 수정된 내용으로 반영이 안되기 때문

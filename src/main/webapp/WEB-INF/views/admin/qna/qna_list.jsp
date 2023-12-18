@@ -145,7 +145,10 @@ p#star_rv_score a.rv_score.on {
                               <td>${QnaVO.qa_content}</td>
                               <td>${QnaVO.qa_regdate}</td>
                               <td>${QnaVO.qa_updatedate}</td>
-                              <td><button class="btn btn-danger" type="button" name="btn_prod_del">삭제</button></td>
+                              <td><button class="btn btn-danger" type="button" name="btn_qna_del">삭제</button>
+                                <button class="btn btn-primary" type="button" name="btn_qna_mod">수정</button>
+                              </td>
+                              <input type="hidden" name="qa_num" value="${QnaVO.qa_num }" />
                               <!-- 필요한 속성 추가 -->
                           </tr>
                       </c:forEach>
@@ -300,33 +303,25 @@ $(".movepage").on("click", function(e) {
 
    actionForm.submit();
 });
-
-
-
-
-
   });
-   $("button[name='btn_prod_del']").on("click", function(){
 
+                  // non-ajax
+$("button[name='btn_qna_del']").on("click" , function() {
 
-let prod_name = $(this).parent().parent().find(".prod_name").text();
-if(!confirm(prod_name + " 상품을 삭제하시겠습니까?")) return;
+if(!confirm("장바구니 상품을 삭제하시겠습니까?")) return;
 
-let prod_num = $(this).parent().parent().find("input[name='check']").val();
+let qa_num = $(this).parent().parent().find("input[name='qa_num']").val();
+location.href = "/admin/qna/qna_delete?qa_num=" + qa_num;
+});
 
-console.log("상품코드", prod_num);
+$("button[name='btn_qna_mod']").on("click" , function() {
 
+if(!confirm("상품을 수정하시겠습니까?")) return;
 
-//뒤로가기 클릭후 다시 수정버튼 클릭시 코드 중복되는부분제거
-actionForm.find("input[name='prod_num']").remove();
+let qa_num = $(this).parent().parent().find("input[name='qa_num']").val();
+location.href = "/admin/qna/qna_modify?qa_num=" + qa_num;
+});
 
-actionForm.append('<input type="hidden" name="prod_num" id="prod_num" value="' + prod_num + '" />');
-
-actionForm.attr("method","post");
-actionForm.attr("action","/admin/product/prod_delete");
-actionForm.submit();
-
-  });
   //ready 이벤트
 
 </script>

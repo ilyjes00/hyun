@@ -60,6 +60,16 @@
                                        value="${memberVO.mbsp_name}" readonly>
                                  </div>
                               </div>
+                              
+                              
+                              <div class="form-group row">
+                                 <label for="mbsp_name" class="col-2">비밀번호</label>
+                                 <div class="col-10">
+                                    <input type="text" class="form-control" name="mbsp_password" id="mbsp_password"
+                                       value="">
+                                 </div>
+                              </div>
+                              
 
                               <div class="form-group row">
                                  <label for="mbsp_email" class="col-2">전자우편</label>

@@ -6,7 +6,7 @@
 <html>
   <head>
     <!-- Bootstrap CSS 링크 추가 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
     <link rel="stylesheet" href="/css/b-nav.css">
     <link rel="stylesheet" href="/css/bmenu.css">
   </head>
@@ -24,18 +24,7 @@
       <a href=#/home.html><span class=triangle-origin>애플</span></a>
       <a href=#/markets.html><span class=triangle-origin>삼성</span></a>
       <a href=#/technology.html><span class=triangle-origin>구글</span></a>
-      <a><span></span></a>
-      <a><span></span></a>
-      <a><span></span></a>
-      <a><span></span></a>
-      <a><span></span></a>
-      <a><span></span></a>
-      <a><span></span></a>
-      <a><span></span></a>
-      <a><span></span></a>
-      <a><span></span></a>
-      <a><span></span></a>
-      <a><span></span></a>
+
       <article class=panel>
         <div class=column>
           </div>
@@ -219,6 +208,7 @@
     <c:if test="${sessionScope.loginStatus != null }">
     <a class="p-2 text-white " href="/member/logout">Logout</a>
     <a class="p-2 text-white" href="/member/confirmPw">Modify</a>
+        <a class="p-2 text-white" href="/user/qna/qna_list">Q&A</a>
     
     </c:if> 
 

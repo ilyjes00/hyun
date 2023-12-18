@@ -41,7 +41,7 @@
         	QA_NUM 
         IN (SELECT DISTINCT ROOT FROM QA_TBL WHERE ROOT IS NOT NULL)
         CONNECT BY NOCYCLE PRIOR QA_NUM = ROOT
-        ORDER SIBLINGS BY STEP ASC
+        ORDER SIBLINGS BY QA_NUM ASC, STEP ASC
     )
     WHERE rn <= #{pageNum} * #{amount}
     AND rn > (#{pageNum} - 1) * #{amount}

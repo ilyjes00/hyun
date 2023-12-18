@@ -39,6 +39,7 @@
          UPDATE MBSP_TBL
         SET
          MBSP_EMAIL = #{mbsp_email},
+         MBSP_PASSWORD = #{mbsp_password},
          MBSP_ZIPCODE = #{mbsp_zipcode}, 
          MBSP_ADDR = #{mbsp_addr}, 
          MBSP_DEADDR = #{mbsp_deaddr}, 

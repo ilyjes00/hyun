@@ -55,7 +55,7 @@
     <c:if test="${sessionScope.loginStatus != null }">
     <a class="p-2 text-white " href="/member/logout">Logout</a>
     <a class="p-2 text-white" href="/member/confirmPw">Modify</a>
-    
+    <a class="p-2 text-white" href="/user/qna/qna_list">Q&A</a>
     </c:if> 
 
         <c:if test="${sessionScope.loginStatus != null }">

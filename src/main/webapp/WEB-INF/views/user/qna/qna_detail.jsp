@@ -85,9 +85,9 @@
 	<a class="btn-fill" href="list.qna">목록으로</a>
 
 	<!-- 로그인이 된 경우 답글 쓰기 가능 -->
-	<core:if test="${!empty login_info }">
-		<a class="btn-fill" href="reply.qna?id=${vo.id }">답글 쓰기</a>
-	</core:if>
+  <c:forEach items="${qna_DetailList }" var="qna_DetailList">
+		<a class="btn-fill" href="/user/qna/qna_reply?qa_num=${qna_DetailList.qa_num}">답글 쓰기</a>
+  </c:forEach>
 </div>
 
 <%@include file="/WEB-INF/views/comm/footer.jsp" %>

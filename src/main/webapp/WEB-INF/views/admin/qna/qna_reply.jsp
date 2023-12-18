@@ -68,7 +68,7 @@
           </section>
 
 
-<form role="form" method="post" action="/user/qna/qna_reply" enctype="multipart/form-data">
+<form role="form" method="post" action="/admin/qna/qna_reply" enctype="multipart/form-data">
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto">
   <c:forEach items="${qna_DetailList }" var="vo">
     <input type="hidden" name="root" id="root" value="${vo.root }" />
@@ -81,7 +81,7 @@
 
     <article>
       <div class="container" role="main">
-        <h2>게시물 작성</h2>
+        <h2>답글 작성</h2>
 
 
           <div class="mb-3"> <label for="title">제목</label>
