@@ -127,5 +127,13 @@
 		
 	
 	</delete>
+	
+	<select id="getReserveExcel" parameterType="com.hyun.domain.OrderVO"  resultType="com.hyun.domain.OrderVO">
+    SELECT 
+    *
+    FROM ORDER_TBL
+        Order by ORD_CODE DESC
+</select>
+	
 
   </mapper>

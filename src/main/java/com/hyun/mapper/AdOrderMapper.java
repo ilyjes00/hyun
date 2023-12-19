@@ -22,5 +22,6 @@ public interface AdOrderMapper {
 	
 	void order_product_delete(@Param("ord_code")Long ord_code, @Param("prod_num") Integer prod_num);
 
+	List<OrderVO> getReserveExcel(OrderVO OrderVO);
 
 }

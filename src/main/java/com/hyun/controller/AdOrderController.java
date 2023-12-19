@@ -3,11 +3,14 @@ package com.hyun.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -115,5 +118,13 @@ public class AdOrderController {
 				
 				
 			}
+			
+			
+			//엑셀다운로드기능
+			@RequestMapping(value = "/management/excelDown.do")
+			public void Excel(@ModelAttribute("OrderVO")OrderVO OrderVO, HttpServletRequest request, HttpServletResponse response, ModelMap model)throws Exception {
+				adOrderService.getReserveExcel(OrderVO, request, response);
+			}
+			
 
 }
