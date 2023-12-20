@@ -93,6 +93,7 @@
 			<mapping path="/admin/**"/> 
 			<exclude-mapping path="/admin/intro"/>
 			<exclude-mapping path="/admin/admin_ok"/>
+			<exclude-mapping path="/admin/member/*"/>
 		    <!-- exclude-mapping을 사용하더라도 mapping보다 우선사용되면 작동을안한다. -->
 		<beans:ref bean="adminInterceptor"/>
 		</interceptor>

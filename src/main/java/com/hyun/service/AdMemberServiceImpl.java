@@ -17,9 +17,9 @@ public class AdMemberServiceImpl implements AdMemberService {
 	private final AdMemberMapper adMemberMapper;
 
 	@Override
-	public List<MemberVO> list(Criteria cri) {
+	public List<MemberVO> list() {
 		// TODO Auto-generated method stub
-		return adMemberMapper.list(cri);
+		return adMemberMapper.list();
 	}
 
 	@Override
@@ -38,6 +38,12 @@ public class AdMemberServiceImpl implements AdMemberService {
 	public void modify2(MemberVO vo) {
 		// TODO Auto-generated method stub
 		adMemberMapper.modify2(vo);
+	}
+
+	@Override
+	public void delete(String mbsp_id) {
+		// TODO Auto-generated method stub
+		adMemberMapper.delete(mbsp_id);
 	}
 
 }

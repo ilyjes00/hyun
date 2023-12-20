@@ -8,12 +8,14 @@ import com.hyun.dto.Criteria;
 
 public interface AdMemberMapper {
 	
-	List<MemberVO> list(Criteria cri);
+	List<MemberVO> list();
 	
 	int getTotalCount(Criteria cri);
 	
 	List<MemberVO> modify1(String mbsp_id);
 	
 	void modify2(MemberVO vo);
+	
+	void delete(String mbsp_id);
 
 }

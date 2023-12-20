@@ -28,16 +28,12 @@ public class AdMemberController {
 		private final PasswordEncoder passwordEncoder;
 		
 		@GetMapping("/list")
-		public void list(Criteria cri, Model model)throws Exception{
-			cri.setAmount(10);
-			
-			List<MemberVO> list = adMemberService.list(cri);
-			model.addAttribute("list", list);
+		public void list(Model model)throws Exception{
 			
 			
+			model.addAttribute("list", adMemberService.list());
 			
-			int totalcount = adMemberService.getTotalCount(cri);
-			model.addAttribute("pageMaker", new PageDTO(cri, totalcount));
+			log.info(model);
 			
 		}
 		
@@ -46,6 +42,8 @@ public class AdMemberController {
 		private String modify(String mbsp_id, Model model)throws Exception{
 			
 			model.addAttribute("vo", adMemberService.modify1(mbsp_id));
+			
+			log.info(model);
 			
 			return "/admin/member/modify";
 		}
@@ -61,7 +59,15 @@ public class AdMemberController {
 			
 			adMemberService.modify2(vo);
 			
-			return "redirect:/admin/member/modify";
+			return "redirect:/admin/member/list";
+		}
+		
+		@GetMapping("/delete")
+		private String qna_delete(String mbsp_id)throws Exception {
+			
+			adMemberService.delete(mbsp_id);
+			
+			return "redirect:/admin/member/list";
 		}
 		
 		

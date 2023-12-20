@@ -4,60 +4,26 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
   <mapper namespace="com.hyun.mapper.AdMemberMapper">
-  
-         	<sql id="criteria">
-	<trim prefix="(" suffix=") AND" prefixOverrides="OR">
-		<foreach collection="typeArr" item="type">
-			<trim prefix="OR">
-				<choose>
-					<when test="cri.type == 'C'.toString()">
-						MBSP_ID like '%' || #{keyword} || '%'
-					</when>
-									
-					<when test="cri.type == 'N'.toString()">
-						MBSP_NAME like '%' || #{keyword} || '%'
-					</when>
-					
-					<when test="cri.type == 'T'.toString()">
-						MBSP_PHONE like '%' || #{keyword} || '%'
-					</when>
-				</choose>
-			</trim>
-		</foreach>
-	</trim>
-	</sql>
-	
-	
-<select id="AdMemberList" resultType="com.hyun.domain.MemberVO" parameterType="com.hyun.dto.Criteria">
-    <![CDATA[
-	select 
-		MBSP_ID, MBSP_NAME, MBSP_EMAIL, MBSP_PASSWORD, MBSP_ZIPCODE, MBSP_ADDR, MBSP_DEADDR, MBSP_PHONE, MBSP_POINT, MBSP_LASTLOGIN, MBSP_DATESUB, MBSP_UPDATEDATE
-	from 
-	(
-		select /*+INDEX_DESC(MBSP_TBL PK_MBSP_ID) */
-		
-			rownum rn, MBSP_ID, MBSP_NAME, MBSP_EMAIL, MBSP_PASSWORD, MBSP_ZIPCODE, MBSP_ADDR, MBSP_DEADDR, MBSP_PHONE, MBSP_POINT, MBSP_LASTLOGIN, MBSP_DATESUB, MBSP_UPDATEDATE
-		
-		from 
-			MBSP_TBL 
-		where 
-			]]>
-		<include refid="criteria"></include>
-		<![CDATA[ 
-		rownum <= #{cri.pageNum} * #{cri.amount}
-	)
-	where rn > (#{cri.pageNum} -1) * #{cri.amount} 
-	]]>
+
+<select id="list" parameterType="String" resultType="com.hyun.domain.MemberVO">
+
+		select
+			MBSP_DEADDR,
+			MBSP_ID,
+			MBSP_EMAIL,
+			MBSP_NAME,
+			MBSP_PASSWORD,
+			MBSP_PHONE,
+			MBSP_ADDR,
+			MBSP_ZIPCODE,
+			MBSP_LASTLOGIN,
+			MBSP_POINT,
+			MBSP_DATESUB,
+			MBSP_UPDATEDATE
+		from
+		  	MBSP_TBL
 	</select>
 
-
-	
-		<select id="getTotalCount" resultType ="int">
-		SELECT COUNT(*) FROM QA_TBL WHERE
-		
-		<include refid="criteria"></include>
-
-	</select>
 	
 	
 	   	   <select id="modify1" parameterType="String" resultType="com.hyun.domain.MemberVO">
@@ -79,6 +45,15 @@ SET
 WHERE 
 	MBSP_ID = #{mbsp_id }
 </update>
+
+  <delete id="delete" parameterType="String">
+  	DELETE 
+  	FROM
+  		MBSP_TBL
+  	WHERE 
+  		MBSP_ID = #{mbsp_id}
+  
+  </delete>
     
 
   </mapper>

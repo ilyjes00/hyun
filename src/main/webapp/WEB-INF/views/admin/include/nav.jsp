@@ -81,7 +81,7 @@
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">회원목록</a></li>
+            <li><a href="/admin/member/list">회원목록</a></li>
           </ul>
         </li>
 
@@ -95,14 +95,13 @@
             <li><a href="#">1:1 상담문의</a></li>
             <li><a href="#">회원 탈퇴내역</a></li>
              <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>FAQ관리</span>
+          <a href="#"><i class="fa fa-link"></i> <span>Q&A관리</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
               </a>
            <ul class="treeview-menu">
-               <li><a href="#">FAQ분류</a></li>
-               <li><a href="#">FAQ관리</a></li>
+               <li><a href="/admin/qna/qna_list">Q&A관리</a></li>
           </ul>
           </li>
           </ul>
