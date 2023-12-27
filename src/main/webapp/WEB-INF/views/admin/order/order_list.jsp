@@ -104,7 +104,7 @@ desired effect
 					</div>
 
 					<div class="box-body">
-						<div>
+            <div>
 							<form action="/admin/order/order_list" method="get" >
 									<select name="type">
 										<option selected>검색종류선택</option>
@@ -118,6 +118,7 @@ desired effect
                   ~
                   <input type="date" name="end_date" value="${end_date}">
 									<button type="submit" class="btn btn-primary">검색</button>
+                  <button type="button" class="btn btn-primary" name="btn_excel_down" style="float: right;">엑셀다운로드</button>
 							</form>
 						</div>
 						<table class="table table-bordered" id="order_info_tbl">
@@ -381,6 +382,14 @@ desired effect
     $("#order_detail_modal").modal('show');
 
   });
+
+  $("button[name='btn_excel_down']").on("click" , function() {
+
+if(!confirm("회원정보 엑셀을 다운로드하시겠습니까??")) return;
+
+location.href = "/admin/order/order_list/excelDown.do";
+});
+
   
 
 

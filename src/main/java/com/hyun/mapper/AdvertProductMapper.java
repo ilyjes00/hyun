@@ -31,4 +31,6 @@ public interface AdvertProductMapper {
 
 	//상품삭제
 	void prod_delete(Integer prod_num);
+	
+	List<ProductVO> getReserveExcel(ProductVO ProductVO);
 }

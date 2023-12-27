@@ -121,7 +121,7 @@ public class AdOrderController {
 			
 			
 			//엑셀다운로드기능
-			@RequestMapping(value = "/management/excelDown.do")
+			@RequestMapping(value = "/order_list/excelDown.do")
 			public void Excel(@ModelAttribute("OrderVO")OrderVO OrderVO, HttpServletRequest request, HttpServletResponse response, ModelMap model)throws Exception {
 				adOrderService.getReserveExcel(OrderVO, request, response);
 			}

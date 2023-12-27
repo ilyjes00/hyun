@@ -174,7 +174,7 @@ desired effect
                         </form>
                       </div>
                     </div>
-                      <a class="btn btn-primary" href="" role="button">글쓰기</a>
+                      <a class="btn btn-primary" href="admin/product/prod_list/excelDown.do" role="button">엑셀다운로드</a>
                     
                        </div>												
                 </div>

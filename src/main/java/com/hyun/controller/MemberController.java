@@ -228,7 +228,10 @@ public class MemberController {
 	//마이페이지
 	@GetMapping("/mypage")
 	public void mypage(HttpSession session, Model model) throws Exception {
+		String mbsp_id = ((MemberVO) session.getAttribute("loginStatus")).getMbsp_id();
 		
+		MemberVO db_vo = memberService.login(mbsp_id);
+		model.addAttribute("memberVO", db_vo);
 		
 	}
 	//회원탈퇴 폼

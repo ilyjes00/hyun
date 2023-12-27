@@ -2,6 +2,9 @@ package com.hyun.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.hyun.domain.MemberVO;
 import com.hyun.dto.Criteria;
 
@@ -17,5 +20,5 @@ public interface AdMemberService {
 	
 	void delete(String mbsp_id);
 
-
+	void getReserveExcel(MemberVO MemberVO,HttpServletRequest request,HttpServletResponse response)throws Exception;
 }

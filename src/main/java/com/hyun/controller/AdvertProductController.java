@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,6 +29,7 @@ import com.hyun.dto.Criteria;
 import com.hyun.dto.PageDTO;
 import com.hyun.service.AdCategoryService;
 import com.hyun.domain.CategoryVO;
+import com.hyun.domain.OrderVO;
 import com.hyun.domain.ProductVO;
 import com.hyun.service.AdvertProductService;
 
@@ -266,5 +268,12 @@ public class AdvertProductController {
 		   
 		   return "redirect:/admin/product/prod_list" + cri.getListLink();
 	   }
+	   
+		//엑셀다운로드기능
+		@RequestMapping(value = "/prod_list/excelDown.do")
+		public void Excel(@ModelAttribute("ProductVO")ProductVO ProductVO, HttpServletRequest request, HttpServletResponse response, ModelMap model)throws Exception {
+			advertProductService.getReserveExcel(ProductVO, request, response);
+		}
+		
 	   
 }

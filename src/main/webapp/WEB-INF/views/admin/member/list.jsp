@@ -69,7 +69,13 @@ desired effect
     		<div class="col-md-12">
     			<div class="box">
 					<div class="box-header with-border">
-					<h3 class="box-title">회원목록</h3>
+            <div class="row">
+              <div class="col-md-6">
+                  <h3 class="box-title">회원목록</h3>
+              </div>
+              <div class="col-md-6 text-right">
+                  <button class="btn btn-primary" type="button" name="btn_excel_down">엑셀다운로드</button>
+              </div>
 					</div>
 
 					<div class="box-body">
@@ -277,6 +283,12 @@ let mbsp_id = $(this).data("mbspid");
 location.href = "/admin/member/modify?mbsp_id=" + mbsp_id;
 });
 
+$("button[name='btn_excel_down']").on("click" , function() {
+
+  if(!confirm("회원정보 엑셀을 다운로드하시겠습니까??")) return;
+
+  location.href = "/admin/member/list/excelDown.do";
+});
 
 
 

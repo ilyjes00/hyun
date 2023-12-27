@@ -226,7 +226,7 @@ public class AdOrderServiceImpl implements AdOrderService {
 		}
 		  
 		  response.setHeader("Set-Cookie", "fileDownload=true; path=/");
-		  response.setHeader("Content-Disposition", String.format("attachment; filename=\"ReserveManageList.xlsx\""));
+		  response.setHeader("Content-Disposition", String.format("attachment; filename=\"OrderList.xlsx\""));
 
 			wb.write(response.getOutputStream());
 		 

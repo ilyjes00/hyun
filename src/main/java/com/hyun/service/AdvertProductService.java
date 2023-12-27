@@ -2,8 +2,12 @@ package com.hyun.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.hyun.dto.Criteria;
 import com.hyun.domain.CategoryVO;
+import com.hyun.domain.OrderVO;
 import com.hyun.domain.ProductVO;
 
 public interface AdvertProductService {
@@ -23,4 +27,6 @@ public interface AdvertProductService {
 	void prod_edit(ProductVO vo);
 	
 	void prod_delete(Integer prod_num);
+	
+	void getReserveExcel(ProductVO ProductVO,HttpServletRequest request,HttpServletResponse response)throws Exception;
 }

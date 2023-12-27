@@ -43,13 +43,13 @@
                         <br>
                         <h3 class="box-title">Mypage</h3>
                         <br>
-                        <form role="form" id="modifyForm" method="post" action="/member/modify">
+                        <form role="form" id="modifyForm" method="get" action="/member/mypage">
                            <div class="box-body">
                               <div class="form-group row">
                                  <label for="mbsp_id" class="col-2">아이디</label>
                                  <div class="col-10">
-                                    <input type="text" class="form-control" name="mbsp_id" id="mbsp_id" value="${memberVO.mbsp_id}"
-                                       readonly>
+                                    <input type="text" class="form-control" name="mbsp_id" id="mbsp_id"  value="${memberVO.mbsp_id}" readonly style="width: 80%;">
+                                    
                                  </div>
                               </div>
 
@@ -57,7 +57,7 @@
                                  <label for="mbsp_name" class="col-2">이름</label>
                                  <div class="col-10">
                                     <input type="text" class="form-control" name="mbsp_name" id="mbsp_name"
-                                       value="${memberVO.mbsp_name}" readonly>
+                                       value="${memberVO.mbsp_name}"  readonly style="width: 80%;">
                                  </div>
                               </div>
 
@@ -65,7 +65,7 @@
                                  <label for="mbsp_email" class="col-2">전자우편</label>
                                  <div class="col-10">
                                     <input type="email" class="form-control" name="mbsp_email" id="mbsp_email"
-                                       value="${memberVO.mbsp_email}" placeholder="전자우편 입력...">
+                                       value="${memberVO.mbsp_email}" placeholder="전자우편 입력..." style="width: 80%;">
                                  </div>
                               </div>
 
@@ -73,7 +73,7 @@
                                  <label for="sample2_postcode" class="col-2">우편번호</label>
                                  <div class="col-8">
                                     <input type="text" class="form-control" name="mbsp_zipcode" id="sample2_postcode"
-                                       value="${memberVO.mbsp_zipcode}" placeholder="우편번호 입력...">
+                                       value="${memberVO.mbsp_zipcode}" placeholder="우편번호 입력..." style="width: 101%;">
                                  </div>
                                  <div class="col-2">
                                     <button type="button" onclick="sample2_execDaumPostcode()" class="btn btn-outline-info">우편번호
@@ -84,14 +84,14 @@
                                  <label for="sample2_address" class="col-2">기본주소</label>
                                  <div class="col-10">
                                     <input type="text" class="form-control" name="mbsp_addr" id="sample2_address"
-                                       value="${memberVO.mbsp_addr}" placeholder="기본주소 입력...">
+                                       value="${memberVO.mbsp_addr}" placeholder="기본주소 입력..."style="width: 80%;">
                                  </div>
                               </div>
                               <div class="form-group row">
                                  <label for="sample2_detailAddress" class="col-2">상세주소</label>
                                  <div class="col-10">
                                     <input type="text" class="form-control" name="mbsp_deaddr" id="sample2_detailAddress"
-                                       value="${memberVO.mbsp_deaddr}" placeholder="상세주소 입력...">
+                                       value="${memberVO.mbsp_deaddr}" placeholder="상세주소 입력..."style="width: 80%;">
                                     <input type="hidden" id="sample2_extraAddress" placeholder="참고항목">
                                  </div>
                               </div>
@@ -99,7 +99,7 @@
                                  <label for="mbsp_phone" class="col-2">전화번호</label>
                                  <div class="col-10">
                                     <input type="text" class="form-control" name="mbsp_phone" id="mbsp_phone"
-                                       value="${memberVO.mbsp_phone}" placeholder="전화번호 입력...">
+                                       value="${memberVO.mbsp_phone}" placeholder="전화번호 입력..."style="width: 80%;">
                                  </div>
                               </div>
                            </div>

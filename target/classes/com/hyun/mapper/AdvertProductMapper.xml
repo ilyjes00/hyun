@@ -112,6 +112,13 @@
 			PROD_NUM= #{prod_num}
 	</delete>
 	
-
+	<select id="getReserveExcel" parameterType="com.hyun.domain.ProductVO"  resultType="com.hyun.domain.ProductVO">
+   	SELECT 
+    	 prod_num, cgt_code, prod_name, prod_price, prod_discount, prod_publisher, prod_content, prod_amount, prod_buy, prod_date, prod_updatedate
+    FROM
+    	 PRODUCT_TBL
+    Order by 
+    	 prod_num DESC
+</select>
 
   </mapper>

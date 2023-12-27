@@ -4,6 +4,7 @@ package com.hyun.mapper;
 import java.util.List;
 
 import com.hyun.domain.MemberVO;
+import com.hyun.domain.ProductVO;
 import com.hyun.dto.Criteria;
 
 public interface AdMemberMapper {
@@ -17,5 +18,7 @@ public interface AdMemberMapper {
 	void modify2(MemberVO vo);
 	
 	void delete(String mbsp_id);
+	
+	List<MemberVO> getReserveExcel(MemberVO MemberVO);
 
 }

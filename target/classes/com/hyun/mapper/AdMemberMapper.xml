@@ -54,6 +54,15 @@ WHERE
   		MBSP_ID = #{mbsp_id}
   
   </delete>
+  
+  	<select id="getReserveExcel" parameterType="com.hyun.domain.MemberVO"  resultType="com.hyun.domain.MemberVO">
+   	SELECT 
+    	 MBSP_ID, MBSP_NAME, MBSP_EMAIL, MBSP_ZIPCODE, MBSP_ADDR, MBSP_DEADDR, MBSP_PHONE, MBSP_POINT, MBSP_LASTLOGIN, MBSP_DATESUB, MBSP_UPDATEDATE
+    FROM
+    	 MBSP_TBL
+    Order by 
+    	 MBSP_ID DESC
+</select>
     
 
   </mapper>
