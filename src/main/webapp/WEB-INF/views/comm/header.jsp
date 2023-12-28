@@ -53,24 +53,29 @@
 
   <link rel="stylesheet" type="text/css" href="https://resource.clickn.co.kr/css/modules/module_common.css?v=20231204">
   <link rel="stylesheet" type="text/css" href="https://resource.clickn.co.kr/css/modules/module_header.css?v=20231204">
-  <!--
+  
+  <link rel="stylesheet" type="text/css" href="/css/module_builderProductA.css">
+  <link rel="stylesheet" type="text/css" href="https://resource.clickn.co.kr/css/modules/module_builderProductB.css?v=20231204">
+  <link rel="stylesheet" type="text/css" href="https://resource.clickn.co.kr/css/modules/module_builderProductC.css?v=20231204"> 
+
   <link rel="stylesheet" type="text/css" href="https://resource.clickn.co.kr/css/modules/module_board.css?v=20231204">
   <link rel="stylesheet" type="text/css" href="https://resource.clickn.co.kr/css/modules/module_boardRecent.css?v=20231204">
   <link rel="stylesheet" type="text/css" href="https://resource.clickn.co.kr/css/modules/module_contents.css?v=20231204">
   <link rel="stylesheet" type="text/css" href="https://resource.clickn.co.kr/css/modules/module_form.css?v=20231204">
+ 
   <link rel="stylesheet" type="text/css" href="https://resource.clickn.co.kr/css/modules/module_image.css?v=20231204">
   <link rel="stylesheet" type="text/css" href="https://resource.clickn.co.kr/css/modules/module_layout.css?v=20231204">
   <link rel="stylesheet" type="text/css" href="https://resource.clickn.co.kr/css/modules/module_line.css?v=20231204">
   <link rel="stylesheet" type="text/css" href="https://resource.clickn.co.kr/css/modules/module_map.css?v=20231204">
+    
   <link rel="stylesheet" type="text/css" href="https://resource.clickn.co.kr/css/modules/module_slide.css?v=20231204">
   <link rel="stylesheet" type="text/css" href="https://resource.clickn.co.kr/css/modules/module_text.css?v=20231204">
   <link rel="stylesheet" type="text/css" href="https://resource.clickn.co.kr/css/modules/module_video.css?v=20231204">
   <link rel="stylesheet" type="text/css" href="https://resource.clickn.co.kr/css/modules/module_gallery.css?v=20231204">
   <link rel="stylesheet" type="text/css" href="https://resource.clickn.co.kr/css/modules/module_table.css?v=20231204">
   <link rel="stylesheet" type="text/css" href="https://resource.clickn.co.kr/css/modules/module_footer.css?v=20231204">
-  <link rel="stylesheet" type="text/css" href="https://resource.clickn.co.kr/css/modules/module_builderProductA.css?v=20231204">
-  <link rel="stylesheet" type="text/css" href="https://resource.clickn.co.kr/css/modules/module_builderProductB.css?v=20231204">
-  <link rel="stylesheet" type="text/css" href="https://resource.clickn.co.kr/css/modules/module_builderProductC.css?v=20231204"> -->
+ 
+
 
 
 
@@ -80,14 +85,14 @@
 
 
   
-<!--
+
   <script src="https://designskin57.clickn.co.kr/lang/skin_js.js"></script>
   <script src="https://designskin57.clickn.co.kr/lang/common.js?m=front&amp;g=common"></script>
   <script src="https://designskin57.clickn.co.kr/vendors/Jquery/jquery.min.js"></script>
   <script src="https://designskin57.clickn.co.kr/vendors/Twbs-pagination/jquery.twbsPagination.js"></script>
   <script src="https://designskin57.clickn.co.kr/js/common.js?v=20231204"></script>
 
-  <script src="https://designskin57.clickn.co.kr/js/skin_ui_functions.js?v=20231204"></script> 우선 순위 높아야하는 UI Functions -->
+  <script src="https://designskin57.clickn.co.kr/js/skin_ui_functions.js?v=20231204"></script>
 
   <script>		
 
@@ -331,7 +336,7 @@ max-width: 100%;
                   <button type="button" class="btn_depth2_view __depth2Btn"></button>
                   <div class="navi_depth2_wrap">
                       <div class="navi_depth2_container">
-                          <ul class="navi_depth2"><li><a href="/user/product/prod_list?cgt_code=4&cgt_name=아이폰15 Pro">IPhone</a></li><li><a href="/user/product/prod_list?cgt_code=18&cgt_name=에어팟 Pro 2세대">Airpods</a></li><li><a href="/user/product/prod_list?cgt_code=23&cgt_name=아이패드 10.9' (10세대)">IPad</a></li><li><a href="/user/product/prod_list?cgt_code=30&cgt_name=맥북 Air 15인치 (2023)">Macbooks</a></li><li><a href="/user/product/prod_list?cgt_code=41&cgt_name=38 / 40 / 41mm">Applewatch</a></li><li><a href="/user/product/prod_list?cgt_code=45&cgt_name=에어태그 케이스">AppleAccessory</a></li></ul>                    
+                          <ul class="navi_depth2"><li><a href="/user/product/prod_list?cgt_code=5&cgt_name=아이폰15 Pro">IPhone</a></li><li><a href="/user/product/prod_list?cgt_code=18&cgt_name=에어팟 Pro 2세대">Airpods</a></li><li><a href="/user/product/prod_list?cgt_code=23&cgt_name=아이패드 10.9' (10세대)">IPad</a></li><li><a href="/user/product/prod_list?cgt_code=30&cgt_name=맥북 Air 15인치 (2023)">Macbooks</a></li><li><a href="/user/product/prod_list?cgt_code=41&cgt_name=38 / 40 / 41mm">Applewatch</a></li><li><a href="/user/product/prod_list?cgt_code=45&cgt_name=에어태그 케이스">AppleAccessory</a></li></ul>                    
                       </div>
                   </div>
               </div></li><li><a href="/pages/service" style="color: rgb(62, 62, 63); font-size: 16px;">Galaxy</a><div>                         
@@ -350,5 +355,68 @@ max-width: 100%;
             </div>
           </div>
         </div>
+        <script src="https://designskin57.clickn.co.kr/vendors/Slick/slick.min.js"></script>
+        <script src="https://designskin57.clickn.co.kr/vendors/Swiper/swiper.min.js"></script><!-- Swiper js-->
+        <script src="https://designskin57.clickn.co.kr/vendors/Froala/js/froala_editor.pkgd.min.js"></script>
+        <script src="https://designskin57.clickn.co.kr/vendors/Froala/js/languages/ko.js"></script>
+        <script src="https://designskin57.clickn.co.kr/vendors/Fontawesome/font_awesome.min.js"></script>
+        <script src="https://designskin57.clickn.co.kr/vendors/Wow/wow.min.js"></script><!-- Wow.js -->
+        <script src="https://designskin57.clickn.co.kr/vendors/Datepicker/js/datepicker.min.js"></script><!-- datapicker -->
+        <script src="https://designskin57.clickn.co.kr/vendors/Datepicker/lang/datepicker.lang.js"></script><!-- datapicker language -->
+        <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script><!-- 카카오 우편번호 API -->
+      
+      <!-- 지도 API -->
+      
+        <!-- 주소 변환 -->
+        <script src="https://designskin57.clickn.co.kr/js/postcode.js?v=20231204"></script>
+        <script src="https://designskin57.clickn.co.kr/vendors/Dropzone/js/dropzone.min.js"></script>
+        <script src="https://designskin57.clickn.co.kr/vendors/Masonry/js/masonry.pkgd.min.js"></script>
+        <script src="https://designskin57.clickn.co.kr/js/design_loader.js?v=20231204"></script>
+        <script src="https://resource.clickn.co.kr/js/modules/modules_ui.js?v=20231204"></script>
+      
+        <script src="/modules/js?m=members&amp;js=login&amp;v=20231204"></script>
+            <link rel="stylesheet" type="text/css" href="https://resource.clickn.co.kr/css/modules/module_product.css">
+            
+      
+      <!-- Numeral -->
+      <script src="https://designskin57.clickn.co.kr/vendors/Numeral/numeral.min.js"></script>
+      <script src="https://designskin57.clickn.co.kr/js/amount.js?v=20231204"></script>
+      
+      <!-- 이미지 로드 -->
+      <script src="https://designskin57.clickn.co.kr/js/images_loaded.js?v=20231204"></script>
+      
+      <!-- Module JS -->
+      <script src="/modules/js?m=products&amp;js=skins/products/product_list&amp;v=20231204"></script>
+      <script src="/modules/js?m=products&amp;js=skins/categories/category&amp;v=20231204"></script>
+      <script src="/modules/js?m=products&amp;js=skins/categories/list&amp;v=20231204"></script>
+      
+      <script>
+        function imgLoadError( obj ) { // 이미지 로딩 에러 처리
+            $( obj ).closest('.thumbnail_wrap').addClass('no_images');
+        }
+      
+        $(document).ready(function () {
+            // 페이지 URL 
+            var url = {};
+            url['listCategory'] = 'https://designskin57.clickn.co.kr/categories/1692753076';   // 카테고리 목록
+            url['listLink'] = 'https://designskin57.clickn.co.kr/categories/%category_encode%';   // 카테고리 목록 - 링크 생성용
+            url['listCategoryData'] = 'https://designskin57.clickn.co.kr/categories/1692753076/list';   // 카테고리 목록 - data
+            url['listProductData'] = 'https://designskin57.clickn.co.kr/search/product';   // 상품 목록 - data
+            
+            var category_config = '{&quot;category_config_seq&quot;:1,&quot;orderby_criteria_type&quot;:&quot;regist_desc&quot;,&quot;decoration&quot;:null,&quot;display_col&quot;:4,&quot;display_row&quot;:5}';
+            category_config = JSON.parse(category_config.replace(/&quot;/g, '"'));
+            // 초기화
+            var opt = {
+                    'url' : url,   // url
+                    'category_encode' : '1692753076',   // category_encode
+                    'category_seq' : '2',   // category_seq
+                    'sort' : 'regist_date|desc',   // sort
+                    'per_page' : '20',   // per_page
+                    'page' : '1',   // page
+                    'category_config' : category_config, // category_config
+            };
+            fnCategoryProductList.init(opt);
+        });
+      </script>
 
 </html>

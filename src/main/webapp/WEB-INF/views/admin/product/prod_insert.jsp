@@ -81,7 +81,7 @@ desired effect
                 </div>
                 <label for="title" class="col-sm-1 col-form-label"></label>
                 <div class="col-sm-6">
-                  <select class="form-control" id="twoCategory" name="cgt_code">
+                  <select class="form-control" id="twoCategory" name="cgt_code1">
                     <option>2차 카테고리 선택</option>
                     <c:forEach items="${twoCategoryList }" var="categoryVO">
                       <option value="${categoryVO.cgt_code }">${categoryVO.cgt_name } </option>
@@ -93,6 +93,9 @@ desired effect
                 <div class="col-sm-10">
                   <select class="form-control" id="threeCategory" name="cgt_code">
                     <option>3차 카테고리 선택</option>
+                    <c:forEach items="${threeCategoryList }" var="categoryVO">
+                      <option value="${categoryVO.cgt_code }">${categoryVO.cgt_name } </option>
+                      </c:forEach>
                   </select>
                 </div>
                 </div>
@@ -353,6 +356,27 @@ desired effect
 
         });
       });
+      // 3차 카테고리 선택 시 서버로 데이터 전송
+$("#threeCategory").change(function() {
+    let cgt_code = $(this).val(); // 선택된 3차 카테고리의 값
+
+    // AJAX를 사용하여 서버로 데이터 전송
+    $.ajax({
+        type: 'GET', // 전송 방식 설정 (POST 또는 GET)
+        url: '/admin/category/threeCategory/' + cgt_code, // 데이터를 전송할 URL
+        data: { cgt_code: cgt_code }, // 전송할 데이터 객체
+        success: function(response) {
+            // 성공적으로 서버에 데이터를 전송한 후 수행할 작업
+            console.log('3차 카테고리 값이 성공적으로 전송되었습니다.');
+        },
+        error: function(error) {
+            // 서버로 데이터를 전송하는 중 오류가 발생한 경우 수행할 작업
+            console.error('데이터 전송 중 오류가 발생했습니다.', error);
+        }
+    });
+});
+
+      
 
 
 

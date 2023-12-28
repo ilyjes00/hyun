@@ -78,7 +78,6 @@
 			<!-- Order -->
 			<!-- Cart -->
 			<mapping path="/user/Cart/*"/>
-			<mapping path="/user/Cart/**"/>
 		    <!-- exclude-mapping을 사용하더라도 mapping보다 우선사용되면 작동을안한다. -->
 		<beans:ref bean="userInterceptor"/>
 		</interceptor>

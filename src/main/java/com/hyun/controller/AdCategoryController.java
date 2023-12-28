@@ -24,12 +24,13 @@ public class AdCategoryController {
 
 	private final AdCategoryService adCategoryService;
 	
+	
 	   @ResponseBody
 	   @GetMapping("/twoCategory/{cgt_parent_code}")
 	   public ResponseEntity<List<CategoryVO>> twoCategory(@PathVariable("cgt_parent_code") Integer cgt_parent_code) throws Exception {
 		   
 		   
-		   log.info("1차카테고리코드 : " + cgt_parent_code);
+		   log.info("2차카테고리코드 : " + cgt_parent_code);
 		   
 		   ResponseEntity<List<CategoryVO>> entity = null;
 		   
@@ -45,7 +46,7 @@ public class AdCategoryController {
 	   public ResponseEntity<List<CategoryVO>> threeCategory(@PathVariable("cgt_parent_code") Integer cgt_parent_code) throws Exception {
 		   
 		   
-		   log.info("2차카테고리코드 : " + cgt_parent_code);
+		   log.info("3차카테고리코드 : " + cgt_parent_code);
 		   
 		   ResponseEntity<List<CategoryVO>> entity = null;
 		   
