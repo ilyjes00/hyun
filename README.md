@@ -21,7 +21,7 @@
    Server: Tomcat 9.0
 
   
-   Jsp :2.3/ servlet3.1 / jdk.1.8.0
+   Jsp:2.3/ servlet 3.1 / jdk 1.8.0
 
   
    Java, JavaScript
@@ -43,6 +43,22 @@
   Spring frame work 을 이용하여 쇼핑물에 필요한 요소들을<br>
   직접 구현하는 능력을 학습하였다.
 
+<br>
+<br>
+<br>
 
++ 기능소개
+
+
+MODEL
+---------------------------------------------------
+![modelmap](https://github.com/ilyjes00/hyun/assets/139321591/c9fcffe1-c59c-4336-aa74-9c0da8b43870)
+
+<br>
+<br>
+
+프로젝트 구조
+---------------------------------------------------
+![1](https://github.com/ilyjes00/hyun/assets/139321591/11ea4b48-9944-436e-abe2-f8607a8da159)
 
   
